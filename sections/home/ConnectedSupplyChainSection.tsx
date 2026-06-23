@@ -22,7 +22,7 @@ export default function ConnectedSupplyChainSection() {
 ];
 
   return (
-    <section className="relative py-32 overflow-hidden bg-gradient-to-b from-white via-slate-50 to-white">
+    <section className="relative py-20 overflow-hidden bg-gradient-to-b from-white via-slate-50 to-white">
 
      {/* Enterprise Background Pattern */}
 <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -44,7 +44,7 @@ export default function ConnectedSupplyChainSection() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
         {/* Header */}
-        <div className="text-center mb-32">
+        <div className="text-center mb-20">
 
           <span className="text-[#C8102E] uppercase tracking-[4px] font-semibold">
             CONNECTED SUPPLY CHAIN
@@ -69,7 +69,7 @@ export default function ConnectedSupplyChainSection() {
         </div>
 
        {/* Control Tower Layout */}
-<div className="relative flex flex-col items-center justify-center min-h-[850px]">
+<div className="relative flex flex-col items-center justify-center min-h-[520px]">
 
   {/* Horizontal Connector */}
   <div className="absolute w-[80%] h-px bg-slate-300/60 z-0" />
@@ -83,7 +83,7 @@ export default function ConnectedSupplyChainSection() {
     <img
       src="/images/logos/favicon.png"
       alt="Fortuna"
-      className="w-40 h-40 mx-auto object-contain"
+      className="w-28 h-28 mx-auto object-contain"
     />
 
     {/* <h3 className="mt-4 text-5xl font-extrabold text-[#005F99]">
@@ -113,7 +113,7 @@ export default function ConnectedSupplyChainSection() {
   </div>
 
   {/* Nodes Layout */}
-<div className="w-full max-w-7xl flex flex-col gap-40">
+<div className="w-full max-w-7xl flex flex-col gap-24">
 
   {/* Top Row */}
   <div className="grid grid-cols-4 gap-10">

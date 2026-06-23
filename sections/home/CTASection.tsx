@@ -10,9 +10,12 @@ export default function CTASection() {
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
-    opacity: 0.5,
+    opacity: 5.0,
   }}
 />
+
+
+
 
 
       {/* Blue Glow */}
@@ -42,6 +45,24 @@ export default function CTASection() {
           modern enterprises.
         </p>
 
+      <div className="mt-8 flex justify-center flex-wrap gap-3">
+
+  <span className="px-4 py-2 rounded-full bg-white/10 text-white text-sm">
+    AI Powered
+  </span>
+
+  <span className="px-4 py-2 rounded-full bg-white/10 text-white text-sm">
+    Cloud Native
+  </span>
+
+  <span className="px-4 py-2 rounded-full bg-white/10 text-white text-sm">
+    Enterprise Ready
+  </span>
+
+</div>
+
+
+
         <div className="mt-12 flex flex-col md:flex-row justify-center gap-5">
 
           <button
@@ -55,6 +76,8 @@ export default function CTASection() {
               hover:shadow-2xl
               transition-all
               duration-300
+              hover:bg-[#E21B3C]
+              hover:shadow-[0_0_30px_rgba(200,16,46,0.5)]
             "
           >
             Request Demo
@@ -70,6 +93,8 @@ export default function CTASection() {
               hover:bg-white/10
               transition-all
               duration-300
+              hover:border-[#C8102E]
+              hover:text-[#C8102E]
             "
           >
             Explore Products
