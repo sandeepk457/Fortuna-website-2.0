@@ -21,14 +21,14 @@ export default function Navbar() {
         <nav className="ml-24 hidden lg:flex items-center gap-8 text-base font-semibold">
 
           <a
-            href="#"
+            href="/"
             className="text-[#C8102E] hover:text-[#C8102E] transition-colors duration-300"
           >
             Home
           </a>
 
           <a
-            href="#"
+            href="/about"
             className="text-[#005F99] hover:text-[#C8102E] transition-colors duration-300"
           >
             About
