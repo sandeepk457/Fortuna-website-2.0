@@ -42,7 +42,7 @@ export default function Navbar() {
           </a>
 
           <a
-            href="#"
+            href="/ai-platform"
             className="text-[#005F99] hover:text-[#C8102E] transition-colors duration-300"
           >
             AI Platform
