@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import ProductMegaMenu from "./ProductMegaMenu";
+import IndustriesMegaMenu from "./IndustriesMegaMenu";
+import ResourcesMegaMenu from "./ResourcesMegaMenu";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -76,19 +78,45 @@ export default function Navbar() {
             )}
           </Link>
 
-          <Link href="/industries" className={navClass("/industries")}>
-            Industries
-            {pathname === "/industries" && (
-              <span className="absolute -bottom-2 left-0 w-full h-[3px] bg-[#C8102E] rounded-full" />
-            )}
-          </Link>
+          <div className="relative group">
 
-          <Link href="/resources" className={navClass("/resources")}>
-            Resources
-            {pathname === "/resources" && (
-              <span className="absolute -bottom-2 left-0 w-full h-[3px] bg-[#C8102E] rounded-full" />
-            )}
-          </Link>
+  <button
+    className={`relative font-semibold transition-all duration-300 ${
+      pathname.startsWith("/industries")
+        ? "text-[#C8102E]"
+        : "text-[#005F99] hover:text-[#C8102E]"
+    }`}
+  >
+    Industries
+
+    {pathname.startsWith("/industries") && (
+      <span className="absolute -bottom-2 left-0 w-full h-[3px] bg-[#C8102E] rounded-full" />
+    )}
+  </button>
+
+  <IndustriesMegaMenu />
+
+</div>
+
+          <div className="relative group">
+
+  <button
+    className={`relative font-semibold transition-all duration-300 ${
+      pathname.startsWith("/resources")
+        ? "text-[#C8102E]"
+        : "text-[#005F99] hover:text-[#C8102E]"
+    }`}
+  >
+    Resources
+
+    {pathname.startsWith("/resources") && (
+      <span className="absolute -bottom-2 left-0 w-full h-[3px] bg-[#C8102E] rounded-full" />
+    )}
+  </button>
+
+  <ResourcesMegaMenu />
+
+</div>
 
           <Link href="/contact" className={navClass("/contact")}>
             Contact
