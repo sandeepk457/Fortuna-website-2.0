@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import ProductMegaMenu from "./ProductMegaMenu";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -48,12 +49,25 @@ export default function Navbar() {
             )}
           </Link>
 
-          <Link href="/products" className={navClass("/products")}>
-            Products
-            {pathname === "/products" && (
-              <span className="absolute -bottom-2 left-0 w-full h-[3px] bg-[#C8102E] rounded-full" />
-            )}
-          </Link>
+          <div className="relative group">
+
+  <button
+    className={`relative font-semibold transition-all duration-300 ${
+      pathname.startsWith("/products")
+        ? "text-[#C8102E]"
+        : "text-[#005F99] hover:text-[#C8102E]"
+    }`}
+  >
+    Products
+
+    {pathname.startsWith("/products") && (
+      <span className="absolute -bottom-2 left-0 w-full h-[3px] bg-[#C8102E] rounded-full" />
+    )}
+  </button>
+
+  <ProductMegaMenu />
+
+</div>
 
           <Link href="/ai-platform" className={navClass("/ai-platform")}>
             AI Platform
@@ -82,6 +96,8 @@ export default function Navbar() {
               <span className="absolute -bottom-2 left-0 w-full h-[3px] bg-[#C8102E] rounded-full" />
             )}
           </Link>
+
+          
 
         </nav>
 
