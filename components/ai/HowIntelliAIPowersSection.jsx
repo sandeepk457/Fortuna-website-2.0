@@ -1,39 +1,45 @@
-export default function HowIntelliAIPowersSection() {
-  const steps = [
-  {
-    title: "Predict",
-    icon: "🧠",
-    desc: "Forecast demand changes, inventory risks and potential supply chain disruptions before they happen.",
-    metric: "95%",
-    label: "Forecast Accuracy",
-    color: "#005F99"
-  },
-  {
-    title: "Analyze",
-    icon: "📊",
-    desc: "Continuously process operational, inventory, transportation and warehouse data in real time.",
-    metric: "500M+",
-    label: "Data Signals Processed",
-    color: "#005F99"
-  },
-  {
-    title: "Decide",
-    icon: "⚡",
-    desc: "Generate intelligent recommendations that help teams make faster and more confident decisions.",
-    metric: "70%",
-    label: "Faster Decisions",
-    color: "#C8102E"
-  },
-  {
-    title: "Execute",
-    icon: "🚀",
-    desc: "Trigger workflows, alerts and actions directly across Fortuna products.",
-    metric: "24x7",
-    label: "Autonomous Actions",
-    color: "#C8102E"
-  }
-];
+import {
+  BrainCircuit,
+  ChartNoAxesCombined,
+  CircleCheckBig,
+  Workflow
+} from "lucide-react";
 
+export default function HowIntelliAIPowersSection() {
+const steps = [
+{
+  title: "Predict",
+  icon: "predict",
+  desc: "Forecast demand changes, inventory risks and potential supply chain disruptions before they happen.",
+  metric: "95%",
+  label: "Forecast Accuracy",
+  color: "#005F99"
+},
+{
+  title: "Analyze",
+  icon: "analyze",
+  desc: "Continuously process operational, inventory, transportation and warehouse data in real time.",
+  metric: "500M+",
+  label: "Data Signals Processed",
+  color: "#005F99"
+},
+{
+  title: "Decide",
+  icon: "decide",
+  desc: "Generate intelligent recommendations that help teams make faster and more confident decisions.",
+  metric: "70%",
+  label: "Faster Decisions",
+  color: "#C8102E"
+},
+{
+  title: "Execute",
+  icon: "execute",
+  desc: "Trigger workflows, alerts and actions directly across Fortuna products.",
+  metric: "24x7",
+  label: "Autonomous Actions",
+  color: "#C8102E"
+}
+];
   return (
     <section className="relative py-32 overflow-hidden bg-slate-50">
 
@@ -224,7 +230,37 @@ export default function HowIntelliAIPowersSection() {
                         : "rgba(200,16,46,0.10)",
                 }}
                 >
-                {step.icon}
+                {step.icon === "predict" && (
+  <BrainCircuit
+    size={42}
+    color={step.color}
+    strokeWidth={2.2}
+  />
+)}
+
+{step.icon === "analyze" && (
+  <ChartNoAxesCombined
+    size={42}
+    color={step.color}
+    strokeWidth={2.2}
+  />
+)}
+
+{step.icon === "decide" && (
+  <CircleCheckBig
+    size={42}
+    color={step.color}
+    strokeWidth={2.2}
+  />
+)}
+
+{step.icon === "execute" && (
+  <Workflow
+    size={42}
+    color={step.color}
+    strokeWidth={2.2}
+  />
+)}
                 </div>
 
                <h3
@@ -237,6 +273,22 @@ export default function HowIntelliAIPowersSection() {
 <p className="mt-4 text-slate-600 leading-relaxed min-h-[130px]">
   {step.desc}
 </p>
+
+<div
+  className="
+    inline-block
+    mt-2
+    px-3
+    py-1
+    rounded-full
+    bg-slate-100
+    text-slate-500
+    text-xs
+    font-semibold
+  "
+>
+  {step.label}
+</div>
 
 <div className="mt-6 border-t border-slate-100 pt-5">
 
