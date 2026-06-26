@@ -100,8 +100,10 @@ export default function IndustrySolutionsSection() {
             INDUSTRIES WE SERVE
           </span>
 
-          <h2 className="mt-5 text-5xl md:text-6xl font-black text-slate-900 leading-tight">
+          <h2 className="mt-5 text-5xl md:text-6xl font-black leading-tight">
+  <span className="text-[#C8102E]">
             Purpose-Built Solutions
+            </span>
             <span className="block text-[#005F99]">
               Across Every Industry
             </span>
