@@ -79,9 +79,9 @@ export default function ManufacturingChallenges() {
 
           </span>
 
-          <h2 className="mt-5 text-5xl md:text-6xl font-black leading-tight">
+          <h2 className="mt-5 text-5xl md:text-4xl md:text-5xl font-black leading-tight">
 
-            <span className="text-[#005F99]">
+            <span className="text-[#FFFFFF]">
 
               Manufacturing Challenges
 
@@ -95,7 +95,7 @@ export default function ManufacturingChallenges() {
 
           </h2>
 
-          <p className="mt-8 text-xl leading-relaxed text-slate-600">
+          <p className="mt-8 text-xl leading-relaxed text-white">
 
             Manufacturing organizations must continuously improve
             productivity, optimize inventory, strengthen supplier
@@ -182,7 +182,7 @@ export default function ManufacturingChallenges() {
 
                     </h3>
 
-                    <p className="mt-5 text-slate-600 leading-8">
+                    <p className="mt-5 text-slate-700 leading-8">
 
                       {item.description}
 
@@ -196,7 +196,7 @@ export default function ManufacturingChallenges() {
 
                       </div>
 
-                      <p className="mt-3 text-slate-600 leading-7">
+                      <p className="mt-3 text-slate-700 leading-7">
 
                         {item.solution}
 
