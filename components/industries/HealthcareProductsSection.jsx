@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "next/link";
+
 import {
-  Boxes,
+  Pill,
   BrainCircuit,
   Network,
   Truck,
-  Warehouse,
-  Route,
+  Building2,
+  Boxes,
   ArrowRight,
 } from "lucide-react";
 
@@ -15,56 +16,56 @@ const products = [
   {
     title: "Fortuna SIMS",
     description:
-      "Manage warehouse operations, inventory, procurement and order fulfillment through one unified logistics platform.",
-    icon: Boxes,
+      "Digitize healthcare procurement, medical inventory, warehouse management and pharmaceutical supply chain operations through one intelligent platform.",
+    icon: Pill,
     color: "red",
     href: "/products/fortuna-sims",
   },
   {
-    title: "Fortuna Lastmile AI",
-    description:
-      "Optimize transportation planning, delivery execution and shipment visibility using intelligent AI-driven logistics.",
-    icon: Truck,
-    color: "blue",
-    href: "/products/lastmile-ai",
-  },
-  {
-    title: "Fortuna Connect Hub",
-    description:
-      "Integrate ERP, WMS, TMS, IoT devices, GPS tracking and third-party logistics applications seamlessly.",
-    icon: Network,
-    color: "red",
-    href: "/products/connect-hub",
-  },
-  {
     title: "Fortuna DemandSense",
     description:
-      "Predict logistics demand, optimize inventory levels and improve distribution planning with AI forecasting.",
+      "Predict medicine demand, optimize inventory levels and reduce shortages using AI-powered healthcare forecasting.",
     icon: BrainCircuit,
     color: "blue",
     href: "/products/demandsense",
   },
   {
-    title: "Warehouse Execution",
+    title: "Fortuna Connect Hub",
     description:
-      "Enable barcode scanning, inventory movement, picking, packing and warehouse execution in real time.",
-    icon: Warehouse,
+      "Integrate ERP, HIS, pharmacy systems, laboratory applications and medical devices through seamless enterprise connectivity.",
+    icon: Network,
+    color: "red",
+    href: "/products/connect-hub",
+  },
+  {
+    title: "Fortuna Lastmile AI",
+    description:
+      "Optimize pharmaceutical distribution, medical deliveries and cold-chain transportation with AI-powered logistics intelligence.",
+    icon: Truck,
+    color: "blue",
+    href: "/products/lastmile-ai",
+  },
+  {
+    title: "Hospital Operations",
+    description:
+      "Improve hospital inventory visibility, internal material movement and operational efficiency across departments.",
+    icon: Building2,
     color: "red",
     href: "/products/fortuna-sims",
   },
   {
-    title: "Transportation Intelligence",
+    title: "Inventory Intelligence",
     description:
-      "Optimize routes, fleet utilization and carrier performance with intelligent transportation analytics.",
-    icon: Route,
+      "Gain real-time visibility into medical inventory, batch traceability, expiry management and healthcare stock optimization.",
+    icon: Boxes,
     color: "blue",
-    href: "/products/lastmile-ai",
+    href: "/products/demandsense",
   },
 ];
 
-export default function LogisticsProductsSection() {
+export default function HealthcareProductsSection() {
   return (
-    <section className="relative py-32 overflow-hidden bg-slate-50">
+    <section className="relative overflow-hidden py-32 bg-slate-50">
 
       {/* Background Glow */}
 
@@ -88,25 +89,26 @@ export default function LogisticsProductsSection() {
 
             <span className="text-[#005F99]">
 
-              Logistics Solutions
+              Healthcare Solutions
 
             </span>
 
             <span className="block text-[#C8102E]">
 
-              Built For Connected Supply Chains
+              Built For Modern Healthcare
 
             </span>
 
           </h2>
 
-          <div className="mx-auto mt-8 h-1 w-44 rounded-full bg-gradient-to-r from-[#005F99] via-white to-[#C8102E]" />
+          <div className="mx-auto mt-8 h-1 w-44 rounded-full bg-gradient-to-r from-[#005F99] to-[#C8102E]" />
 
           <p className="mt-10 text-xl leading-9 text-slate-600">
 
-            Fortuna provides an integrated logistics platform connecting
-            transportation, warehousing, inventory, distribution and AI
-            intelligence into one unified digital ecosystem.
+            Fortuna delivers intelligent healthcare supply chain solutions
+            connecting hospitals, pharmaceutical organizations, medical
+            inventory, cold-chain logistics and AI-powered demand planning
+            into one unified digital platform.
 
           </p>
 
@@ -119,7 +121,6 @@ export default function LogisticsProductsSection() {
           {products.map((product, index) => {
 
             const Icon = product.icon;
-
             const isRed = product.color === "red";
 
             return (
@@ -150,8 +151,9 @@ export default function LogisticsProductsSection() {
                     duration-500
 
                     hover:-translate-y-3
-                    hover:border-[#C8102E]/20
-                    hover:shadow-[0_30px_70px_rgba(0,0,0,0.12)]
+                    hover:scale-[1.02]
+                    hover:border-[#C8102E]/30
+                    hover:shadow-[0_35px_70px_rgba(0,0,0,0.18)]
                   "
                 >
 
@@ -160,6 +162,7 @@ export default function LogisticsProductsSection() {
                   <div
                     className="
                       inline-flex
+
                       rounded-full
 
                       bg-slate-100
@@ -177,7 +180,7 @@ export default function LogisticsProductsSection() {
                     "
                   >
 
-                    Logistics Solution
+                    Healthcare Solution
 
                   </div>
 
@@ -187,14 +190,14 @@ export default function LogisticsProductsSection() {
                     className={`
                       mt-8
 
-                      w-16
-                      h-16
-
-                      rounded-3xl
-
                       flex
+                      h-16
+                      w-16
+
                       items-center
                       justify-center
+
+                      rounded-3xl
 
                       transition-all
                       duration-500
@@ -236,7 +239,7 @@ export default function LogisticsProductsSection() {
 
                   {/* CTA */}
 
-                  <div className="mt-8 inline-flex items-center gap-3 text-[#005F99] font-semibold group-hover:text-[#C8102E] transition-all">
+                  <div className="mt-8 inline-flex items-center gap-3 font-semibold text-[#005F99] group-hover:text-[#C8102E] transition-all">
 
                     Explore Product
 

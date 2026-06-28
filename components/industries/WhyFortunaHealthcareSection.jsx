@@ -3,87 +3,85 @@
 import Link from "next/link";
 
 import {
-  Truck,
-  PackageCheck,
-  Route,
+  Pill,
+  Snowflake,
   BrainCircuit,
-  Warehouse,
+  Building2,
+  Network,
   ShieldCheck,
   ArrowRight,
 } from "lucide-react";
 
 const features = [
   {
-    title: "End-to-End Visibility",
+    title: "Medical Inventory",
     description:
-      "Gain real-time visibility across transportation, warehouses, shipments and distribution networks from one unified platform.",
-    icon: Truck,
+      "Manage medicines, surgical supplies, implants and medical consumables through one intelligent inventory platform.",
+    icon: Pill,
     color: "red",
   },
   {
-    title: "Warehouse Excellence",
+    title: "Cold Chain Visibility",
     description:
-      "Optimize inbound, outbound, inventory and warehouse execution with intelligent automation and barcode operations.",
-    icon: Warehouse,
+      "Monitor vaccines, biologics and temperature-sensitive products with complete cold chain visibility and compliance.",
+    icon: Snowflake,
     color: "blue",
   },
   {
-    title: "Shipment Tracking",
+    title: "AI Demand Forecasting",
     description:
-      "Track shipments, vehicles and deliveries in real time while improving customer communication and service levels.",
-    icon: PackageCheck,
-    color: "red",
-  },
-  {
-    title: "Route Optimization",
-    description:
-      "Reduce transportation costs through intelligent route planning, fleet utilization and AI-powered logistics optimization.",
-    icon: Route,
-    color: "blue",
-  },
-  {
-    title: "AI Logistics Intelligence",
-    description:
-      "Predict transportation delays, optimize warehouse operations and make faster logistics decisions using AI.",
+      "Forecast medicine demand, optimize stock levels and reduce shortages using AI-powered healthcare analytics.",
     icon: BrainCircuit,
+    color: "red",
+  },
+  {
+    title: "Hospital Supply Chain",
+    description:
+      "Digitize procurement, inventory, warehousing and distribution across hospitals and healthcare organizations.",
+    icon: Building2,
+    color: "blue",
+  },
+  {
+    title: "Enterprise Integration",
+    description:
+      "Integrate ERP, HIS, pharmacy systems, laboratory platforms and medical devices through secure enterprise connectivity.",
+    icon: Network,
     color: "red",
   },
   {
     title: "Enterprise Security",
     description:
-      "Protect logistics operations with enterprise-grade security, audit trails and role-based access across the supply chain.",
+      "Protect healthcare operations using enterprise-grade security, audit trails and role-based access control.",
     icon: ShieldCheck,
     color: "blue",
   },
 ];
 
-export default function WhyFortunaLogisticsSection() {
+export default function WhyFortunaHealthcareSection() {
   return (
     <section className="relative overflow-hidden py-32">
 
-        {/* Background Image */}
+      {/* Background Image */}
 
-<div
-  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-  style={{
-    backgroundImage:
-      "url('/images/industries/Grid/logistics-port-bg.png')",
-  }}
-/>
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "url('/images/industries/Grid/healthcare2.png')",
+        }}
+      />
 
-{/* Dark Overlay */}
+      {/* Overlay */}
 
-<div className="absolute inset-0 bg-gradient-to-r from-[#001827]/75 via-[#001827]/45 to-black/20" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#001827]/75 via-[#001827]/45 to-black/20" />
 
-{/* Blue Glow */}
+      {/* Blue Glow */}
 
-<div className="absolute -left-40 top-0 w-[450px] h-[450px] rounded-full bg-[#005F99]/10 blur-[180px]" />
+      <div className="absolute -left-40 top-0 w-[450px] h-[450px] rounded-full bg-[#005F99]/10 blur-[180px]" />
 
-{/* Red Glow */}
+      {/* Red Glow */}
 
-<div className="absolute -right-40 bottom-0 w-[450px] h-[450px] rounded-full bg-[#C8102E]/10 blur-[180px]" />
-
-      
+      <div className="absolute -right-40 bottom-0 w-[450px] h-[450px] rounded-full bg-[#C8102E]/10 blur-[180px]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
 
@@ -101,7 +99,7 @@ export default function WhyFortunaLogisticsSection() {
 
             <span className="text-white">
 
-              Why Logistics Leaders Choose
+              Why Healthcare Leaders Choose
 
             </span>
 
@@ -113,24 +111,24 @@ export default function WhyFortunaLogisticsSection() {
 
             <span className="block text-white">
 
-              Digital Logistics Platform
+              Digital Healthcare Platform
 
             </span>
 
           </h2>
 
-                <div className="mx-auto mt-8 h-1 w-44 rounded-full bg-gradient-to-r from-[#005F99] via-[#C8102E] to-[#005F99]" />
+          <div className="mx-auto mt-8 h-1 w-44 rounded-full bg-gradient-to-r from-[#005F99] to-[#C8102E]" />
 
-<p className="mt-10 text-xl leading-9 text-white max-w-4xl mx-auto">
+          <p className="mt-10 text-xl leading-9 text-white/90 max-w-4xl mx-auto">
 
-  Fortuna helps logistics organizations modernize transportation,
-  warehouse operations, shipment visibility and distribution
-  planning through one intelligent digital logistics platform
-  powered by AI and real-time operational insights.
+            Fortuna empowers healthcare organizations with intelligent
+            inventory management, pharmaceutical supply chain visibility,
+            AI-powered demand forecasting, regulatory compliance and
+            connected healthcare operations through one unified platform.
 
-</p>
+          </p>
 
-</div>
+        </div>
 
         {/* Feature Cards */}
 
@@ -139,7 +137,6 @@ export default function WhyFortunaLogisticsSection() {
           {features.map((item, index) => {
 
             const Icon = item.icon;
-
             const isRed = item.color === "red";
 
             return (
@@ -150,22 +147,23 @@ export default function WhyFortunaLogisticsSection() {
                   group
                   rounded-[30px]
                   bg-white
-                  hover:scale-[1.02]
-hover:border-[#C8102E]/30
-hover:shadow-[0_35px_70px_rgba(0,0,0,0.25)]
                   border
                   border-slate-200
                   p-8
-                  shadow-lg
+                  shadow-xl
 
                   transition-all
                   duration-500
 
                   hover:-translate-y-3
-                  hover:border-[#C8102E]/20
-                  hover:shadow-[0_25px_60px_rgba(0,0,0,0.12)]
+                  hover:scale-[1.02]
+                  hover:border-[#C8102E]/30
+                  hover:shadow-[0_35px_70px_rgba(0,0,0,0.25)]
                 "
+
               >
+
+                {/* Icon */}
 
                 <div
                   className={`
@@ -198,11 +196,15 @@ hover:shadow-[0_35px_70px_rgba(0,0,0,0.25)]
 
                 </div>
 
+                {/* Title */}
+
                 <h3 className="text-2xl font-bold text-slate-900">
 
                   {item.title}
 
                 </h3>
+
+                {/* Description */}
 
                 <p className="mt-5 text-slate-600 leading-8 min-h-[96px]">
 
@@ -210,7 +212,11 @@ hover:shadow-[0_35px_70px_rgba(0,0,0,0.25)]
 
                 </p>
 
+                {/* Divider */}
+
                 <div className="mt-8 w-20 h-[3px] rounded-full bg-gradient-to-r from-[#005F99] to-[#C8102E]" />
+
+                {/* CTA */}
 
                 <Link
                   href="/contact"
