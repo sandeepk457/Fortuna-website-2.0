@@ -1,34 +1,132 @@
 "use client";
 
 import { useState } from "react";
-import { Send } from "lucide-react";
+
+import {
+  Send,
+  Loader2,
+  CheckCircle2,
+} from "lucide-react";
 
 export default function EnterpriseContactForm() {
+  const initialForm = {
+  fullName: "",
+  email: "",
+  company: "",
+  phoneCode: "+91",
+  phone: "",
+  industry: "",
+  product: "",
+  country: "",
+  companySize: "",
+  message: "",
+};
 
-  const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    company: "",
-    phone: "",
-    industry: "",
-    product: "",
-    country: "",
-    companySize: "",
-    message: "",
-  });
+const [formData, setFormData] = useState(initialForm);
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+const [errors, setErrors] = useState({});
+const [loading, setLoading] = useState(false);
+const [success, setSuccess] = useState(false);
+const [serverError, setServerError] = useState("");
+
+ const handleChange = (e) => {
+  const { name, value } = e.target;
+
+  setFormData((prev) => ({
+    ...prev,
+    [name]:
+      name === "phone"
+        ? value.replace(/\D/g, "")
+        : value,
+  }));
+
+  setErrors((prev) => ({
+    ...prev,
+    [name]: "",
+  }));
+
+  setServerError("");
+};
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!formData.fullName.trim()) {
+      newErrors.fullName = "Full Name is required.";
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = "Business Email is required.";
+    } else if (
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)
+    ) {
+      newErrors.email = "Enter a valid email address.";
+    }
+
+    if (!formData.company.trim()) {
+      newErrors.company = "Company Name is required.";
+    }
+
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Phone Number is required.";
+    } else if (!/^\d{7,15}$/.test(formData.phone)) {
+      newErrors.phone = "Phone Number must contain only digits.";
+    }
+
+    if (!formData.industry) {
+      newErrors.industry = "Please select Industry.";
+    }
+
+    if (!formData.product) {
+      newErrors.product = "Please select Product.";
+    }
+
+    if (!formData.country) {
+      newErrors.country = "Please select Country.";
+    }
+
+    if (!formData.companySize) {
+      newErrors.companySize = "Please select Company Size.";
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = "Please enter your requirements.";
+    }
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    console.log(formData);
-  };
+  if (!validateForm()) return;
+
+  setLoading(true);
+  setServerError("");
+
+  try {
+    // Backend API
+    // await axios.post("/api/contact", formData);
+
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
+    setSuccess(true);
+    setFormData(initialForm);
+
+    setTimeout(() => {
+      setSuccess(false);
+    }, 5000);
+
+  } catch (err) {
+    setServerError(
+      "Something went wrong. Please try again."
+    );
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <section className="relative overflow-hidden py-32 bg-slate-50">
@@ -83,7 +181,25 @@ export default function EnterpriseContactForm() {
 
         {/* Main Layout */}
 
-        <div className="mt-24 grid lg:grid-cols-2 gap-16">
+        <div
+  className="
+    mt-24
+
+    rounded-[40px]
+
+    bg-white
+
+    border
+    border-slate-200
+
+    shadow-[0_25px_80px_rgba(0,0,0,0.08)]
+
+    p-12
+    lg:p-16
+  "
+>
+
+<div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-16">
 
           {/* Left Form */}
 
@@ -91,13 +207,34 @@ export default function EnterpriseContactForm() {
 
             <form onSubmit={handleSubmit}>
 
-              <div className="grid md:grid-cols-2 gap-6">
+              {success && (
+  <div className="mb-8 rounded-2xl border border-green-200 bg-green-50 p-5 flex items-center gap-3">
+    <CheckCircle2 className="text-green-600" size={22} />
+    <div>
+      <p className="font-semibold text-green-700">
+        Your response has been submitted successfully.
+      </p>
+      <p className="text-sm text-green-600">
+        Our team will connect with you shortly.
+      </p>
+    </div>
+  </div>
+)}
+
+{serverError && (
+  <div className="mb-8 rounded-2xl border border-red-200 bg-red-50 p-5 text-red-600">
+    {serverError}
+  </div>
+)}
+
+
+              <div className="grid md:grid-cols-2 gap-8">
 
                 {/* Full Name */}
 
                 <div>
 
-                  <label className="block mb-3 font-semibold text-slate-700">
+                  <label className="mb-3 block text-sm font-semibold uppercase tracking-wide text-slate-700">
 
                     Full Name *
 
@@ -129,6 +266,12 @@ export default function EnterpriseContactForm() {
                       focus:ring-[#C8102E]/10
                     "
                   />
+
+                  {errors.fullName && (
+                    <p className="mt-2 text-sm text-red-600">
+                      {errors.fullName}
+                    </p>
+                  )}
 
                 </div>
 
@@ -163,6 +306,12 @@ export default function EnterpriseContactForm() {
                     "
                   />
 
+                  {errors.email && (
+                    <p className="mt-2 text-sm text-red-600">
+                      {errors.email}
+                    </p>
+                  )}
+
                 </div>
 
                 {/* Company */}
@@ -196,6 +345,12 @@ export default function EnterpriseContactForm() {
                     "
                   />
 
+                  {errors.company && (
+                    <p className="mt-2 text-sm text-red-600">
+                      {errors.company}
+                    </p>
+                  )}
+
                 </div>
 
                 {/* Phone */}
@@ -228,6 +383,12 @@ export default function EnterpriseContactForm() {
                       focus:ring-[#C8102E]/10
                     "
                   />
+
+                  {errors.phone && (
+                    <p className="mt-2 text-sm text-red-600">
+                      {errors.phone}
+                    </p>
+                  )}
 
                 </div>
 
@@ -455,38 +616,42 @@ export default function EnterpriseContactForm() {
 
               <button
                 type="submit"
+                disabled={loading}
                 className="
                   mt-10
-
                   inline-flex
                   items-center
                   gap-3
-
                   rounded-full
-
                   bg-[#C8102E]
-
                   px-8
                   py-4
-
                   text-white
                   font-semibold
-
                   transition-all
                   duration-300
-
                   hover:bg-[#a60d27]
                   hover:scale-105
+                  disabled:opacity-60
+                  disabled:cursor-not-allowed
                 "
               >
-
-                <Send size={18} />
-
-                Request Personalized Demo
-
+                {loading ? (
+                  <>
+                    <Loader2 className="animate-spin" size={18} />
+                    Submitting...
+                  </>
+                ) : (
+                  <>
+                    <Send size={18} />
+                    Request Personalized Demo
+                  </>
+                )}
               </button>
 
             </form>
+
+          </div>
 
           </div>
 
@@ -573,7 +738,7 @@ export default function EnterpriseContactForm() {
 
                     bg-white
 
-                    p-6
+                    p-8
 
                     shadow-lg
 
@@ -598,7 +763,7 @@ export default function EnterpriseContactForm() {
                         items-center
                         justify-center
 
-                        rounded-2xl
+                        rounded-3xl
 
                         bg-gradient-to-br
                         from-[#005F99]
