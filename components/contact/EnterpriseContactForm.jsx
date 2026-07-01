@@ -1,6 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import countryList from "react-select-country-list";
 
 import {
   Send,
@@ -8,7 +13,51 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
+  const Select = dynamic(() => import("react-select"), {
+  ssr: false,
+});
+
 export default function EnterpriseContactForm() {
+
+
+    const countries = useMemo(
+  () => countryList().getData(),
+  []
+);
+
+
+const selectStyles = {
+  control: (base, state) => ({
+    ...base,
+    minHeight: 58,
+    borderRadius: 16,
+    borderColor: state.isFocused
+      ? "#C8102E"
+      : "#CBD5E1",
+    boxShadow: state.isFocused
+      ? "0 0 0 4px rgba(200,16,46,.10)"
+      : "none",
+    "&:hover": {
+      borderColor: "#C8102E",
+    },
+  }),
+
+  menu: (base) => ({
+    ...base,
+    borderRadius: 16,
+    overflow: "hidden",
+    zIndex: 9999,
+  }),
+
+  option: (base, state) => ({
+    ...base,
+    backgroundColor: state.isFocused
+      ? "#F8E9EC"
+      : "#fff",
+    color: "#1e293b",
+    cursor: "pointer",
+  }),
+};
   const initialForm = {
   fullName: "",
   email: "",
@@ -27,6 +76,7 @@ const [formData, setFormData] = useState(initialForm);
 const [errors, setErrors] = useState({});
 const [loading, setLoading] = useState(false);
 const [success, setSuccess] = useState(false);
+const [showSuccessModal, setShowSuccessModal] = useState(false);
 const [serverError, setServerError] = useState("");
 
  const handleChange = (e) => {
@@ -67,11 +117,11 @@ const [serverError, setServerError] = useState("");
       newErrors.company = "Company Name is required.";
     }
 
-    if (!formData.phone.trim()) {
-      newErrors.phone = "Phone Number is required.";
-    } else if (!/^\d{7,15}$/.test(formData.phone)) {
-      newErrors.phone = "Phone Number must contain only digits.";
-    }
+    if (!formData.phone) {
+  newErrors.phone = "Phone Number is required.";
+} else if (formData.phone.length < 10) {
+  newErrors.phone = "Enter a valid phone number.";
+}
 
     if (!formData.industry) {
       newErrors.industry = "Please select Industry.";
@@ -113,11 +163,10 @@ const [serverError, setServerError] = useState("");
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
     setSuccess(true);
-    setFormData(initialForm);
+setShowSuccessModal(true);
+setFormData(initialForm);
 
-    setTimeout(() => {
-      setSuccess(false);
-    }, 5000);
+    
 
   } catch (err) {
     setServerError(
@@ -133,11 +182,11 @@ const [serverError, setServerError] = useState("");
 
       {/* Blue Glow */}
 
-      <div className="absolute -left-40 top-0 w-[450px] h-[450px] rounded-full bg-[#005F99]/5 blur-[180px]" />
+      <div className="absolute -left-40 top-0 w-[450px] h-[450px] rounded-full bg-[#005F99]/20 blur-[180px]" />
 
       {/* Red Glow */}
 
-      <div className="absolute -right-40 bottom-0 w-[450px] h-[450px] rounded-full bg-[#C8102E]/5 blur-[180px]" />
+      <div className="absolute -right-40 bottom-0 w-[450px] h-[450px] rounded-full bg-[#C8102E]/20 blur-[180px]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
 
@@ -187,10 +236,12 @@ const [serverError, setServerError] = useState("");
 
     rounded-[40px]
 
-    bg-white
+    bg-white/85
 
     border
-    border-slate-200
+    border-white/40
+
+    backdrop-blur-xl
 
     shadow-[0_25px_80px_rgba(0,0,0,0.08)]
 
@@ -207,19 +258,7 @@ const [serverError, setServerError] = useState("");
 
             <form onSubmit={handleSubmit}>
 
-              {success && (
-  <div className="mb-8 rounded-2xl border border-green-200 bg-green-50 p-5 flex items-center gap-3">
-    <CheckCircle2 className="text-green-600" size={22} />
-    <div>
-      <p className="font-semibold text-green-700">
-        Your response has been submitted successfully.
-      </p>
-      <p className="text-sm text-green-600">
-        Our team will connect with you shortly.
-      </p>
-    </div>
-  </div>
-)}
+             
 
 {serverError && (
   <div className="mb-8 rounded-2xl border border-red-200 bg-red-50 p-5 text-red-600">
@@ -363,32 +402,42 @@ const [serverError, setServerError] = useState("");
 
                   </label>
 
-                  <input
-                    type="text"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="Phone Number"
-                    className="
-                      w-full
-                      rounded-2xl
-                      border
-                      border-slate-300
-                      px-5
-                      py-4
-                      outline-none
-                      transition-all
-                      focus:border-[#C8102E]
-                      focus:ring-4
-                      focus:ring-[#C8102E]/10
-                    "
-                  />
+                  <PhoneInput
+  country={"in"}
+  value={formData.phone}
+  onChange={(value, country) => {
+    setFormData((prev) => ({
+      ...prev,
+      phone: value,
+      phoneCode: `+${country.dialCode}`,
+    }));
+  }}
+  enableSearch
+  countryCodeEditable={false}
+  inputStyle={{
+    width: "100%",
+    height: "58px",
+    borderRadius: "16px",
+    border: "1px solid #CBD5E1",
+    paddingLeft: "58px",
+    fontSize: "16px",
+  }}
+  buttonStyle={{
+    borderTopLeftRadius: "16px",
+    borderBottomLeftRadius: "16px",
+    border: "1px solid #CBD5E1",
+    background: "#fff",
+  }}
+  dropdownStyle={{
+    zIndex: 9999,
+  }}
+/>
 
-                  {errors.phone && (
-                    <p className="mt-2 text-sm text-red-600">
-                      {errors.phone}
-                    </p>
-                  )}
+{errors.phone && (
+  <p className="mt-2 text-sm text-red-600">
+    {errors.phone}
+  </p>
+)}
 
                 </div>
 
@@ -420,28 +469,23 @@ const [serverError, setServerError] = useState("");
                       focus:ring-[#C8102E]/10
                     "
                   >
-
                     <option value="">Select Industry</option>
-
                     <option>Manufacturing</option>
-
                     <option>Logistics</option>
-
                     <option>Retail</option>
-
                     <option>Healthcare</option>
-
                     <option>Automotive</option>
-
                     <option>Warehousing</option>
-
                     <option>Consumer Goods</option>
-
                     <option>Energy & Utilities</option>
-
                     <option>Other</option>
-
                   </select>
+
+                  {errors.industry && (
+                    <p className="mt-2 text-sm text-red-600">
+                      {errors.industry}
+                    </p>
+                  )}
 
                 </div>
 
@@ -474,6 +518,8 @@ const [serverError, setServerError] = useState("");
                     "
                   >
 
+                  
+
                     <option value="">Select Product</option>
 
                     <option>All</option>
@@ -496,41 +542,66 @@ const [serverError, setServerError] = useState("");
 
                   </select>
 
+                  {errors.product && (
+  <p className="mt-2 text-sm text-red-600">
+    {errors.product}
+  </p>
+)}
+
                 </div>
 
                 {/* Country */}
 
-                <div>
+              
 
-                  <label className="block mb-3 font-semibold text-slate-700">
+<div>
 
-                    Country *
+  <label className="block mb-3 font-semibold text-slate-700">
+    Country *
+  </label>
 
-                  </label>
+  <Select
+  instanceId="country-select"
+  inputId="country-select"
+  options={countries}
+  styles={selectStyles}
+    placeholder="Search & Select Country"
+    value={
+      countries.find(
+        (country) => country.value === formData.country
+      ) || null
+    }
+    onChange={(selectedOption) => {
+      setFormData((prev) => ({
+        ...prev,
+        country: selectedOption
+          ? selectedOption.value
+          : "",
+      }));
 
-                  <input
-                    type="text"
-                    name="country"
-                    value={formData.country}
-                    onChange={handleChange}
-                    placeholder="Country"
-                    className="
-                      w-full
-                      rounded-2xl
-                      border
-                      border-slate-300
-                      px-5
-                      py-4
-                      outline-none
-                      transition-all
-                      focus:border-[#C8102E]
-                      focus:ring-4
-                      focus:ring-[#C8102E]/10
-                    "
-                  />
+      setErrors((prev) => ({
+        ...prev,
+        country: "",
+      }));
+    }}
+    isClearable
+    isSearchable
+  />
 
-                </div>
 
+  {errors.message && (
+  <p className="mt-2 text-sm text-red-600">
+    {errors.message}
+  </p>
+)}
+
+  {errors.country && (
+    <p className="mt-2 text-sm text-red-600">
+      {errors.country}
+    </p>
+  )}
+
+</div>
                 {/* Company Size */}
 
                 <div>
@@ -659,11 +730,11 @@ const [serverError, setServerError] = useState("");
 
           <div>
 
-            <span className="uppercase tracking-[4px] text-[#C8102E] font-semibold">
+            {/* <span className="uppercase tracking-[4px] text-[#C8102E] font-semibold">
 
               WHY FORTUNA
 
-            </span>
+            </span> */}
 
             <h3 className="mt-5 text-4xl font-black leading-tight">
 
@@ -736,7 +807,8 @@ const [serverError, setServerError] = useState("");
                     border
                     border-slate-200
 
-                    bg-white
+
+                    bg-white/70
 
                     p-8
 
@@ -815,6 +887,110 @@ const [serverError, setServerError] = useState("");
         </div>
 
       </div>
+
+       {/* Success Modal */}
+
+      {showSuccessModal && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 backdrop-blur-md">
+
+          <div
+            className="
+              relative
+              w-full
+              max-w-lg
+              mx-6
+              rounded-[32px]
+              bg-white
+              shadow-[0_30px_80px_rgba(0,0,0,.35)]
+              overflow-hidden
+              animate-[fadeIn_.35s_ease]
+            "
+          >
+
+            {/* Top Gradient */}
+
+            <div className="h-2 bg-gradient-to-r from-[#005F99] via-[#C8102E] to-[#005F99]" />
+
+            <div className="px-10 py-10 text-center">
+
+              {/* Fortuna Logo */}
+
+              <div className="flex justify-center">
+
+                <Image
+                  src="/images/logos/New logo2.0.png"
+                  alt="Fortuna Logo"
+                  width={90}
+                  height={90}
+                  className="object-contain"
+                />
+
+              </div>
+
+              {/* Success Icon */}
+
+              <div className="mt-6 flex justify-center">
+
+                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-green-100">
+
+                  <CheckCircle2
+                    className="text-green-600"
+                    size={44}
+                  />
+
+                </div>
+
+              </div>
+
+              {/* Heading */}
+
+              <h2 className="mt-8 text-3xl font-black text-slate-900">
+
+                Thank You!
+
+              </h2>
+
+              {/* Message */}
+
+              <p className="mt-5 text-lg leading-8 text-slate-600">
+
+                Your request has been submitted successfully.
+
+              </p>
+
+              <p className="mt-2 text-slate-500">
+
+                Our Fortuna experts will connect with you shortly.
+
+              </p>
+
+              {/* Buttons */}
+
+              <div className="mt-10 flex flex-col gap-4">
+
+                <button
+                  onClick={() => setShowSuccessModal(false)}
+                  className="
+                    rounded-xl
+                    bg-[#C8102E]
+                    py-4
+                    font-semibold
+                    text-white
+                    transition
+                    hover:bg-[#a60d27]
+                  "
+                >
+                  Close
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      )}
 
     </section>
 
