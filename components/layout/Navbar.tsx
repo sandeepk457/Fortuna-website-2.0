@@ -10,7 +10,7 @@ import ResourcesMegaMenu from "./ResourcesMegaMenu";
 export default function Navbar() {
   const pathname = usePathname();
 
-  const navClass = (path) =>
+  const navClass = (path: string) =>
     `relative font-semibold transition-all duration-300 ${
       pathname === path
         ? "text-[#C8102E]"
