@@ -41,7 +41,7 @@ const industries = [
   {
     title: "Healthcare",
     description: "Pharmaceutical & Healthcare Operations",
-    image: "/images/industries/grid/Pharma & healthcare.png",
+    image: "/images/industries/grid/Pharmahealthcare.png",
     href: "/industries/healthcare",
     icon: HeartPulse,
     color: "blue",
