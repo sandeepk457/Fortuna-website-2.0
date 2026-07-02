@@ -19,7 +19,7 @@ export default function AutomotiveOverview() {
             <div className="overflow-hidden rounded-[32px] shadow-2xl">
 
               <Image
-                src="/images/industries/Grid/automotive.png"
+                src="/images/industries/grid/automotive.png"
                 alt="Automotive Manufacturing"
                 width={1200}
                 height={850}
