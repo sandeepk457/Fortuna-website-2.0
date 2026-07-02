@@ -67,7 +67,7 @@ export default function WhyFortunaHealthcareSection() {
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage:
-            "url('/images/industries/Grid/healthcare2.png')",
+            "url('/images/industries/grid/healthcare2.png')",
         }}
       />
 
