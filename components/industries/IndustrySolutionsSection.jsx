@@ -46,6 +46,7 @@ const industries = [
     icon: HeartPulse,
     color: "blue",
   },
+  
   {
     title: "Automotive",
     description: "Vehicle Manufacturing & Supplier Network",
