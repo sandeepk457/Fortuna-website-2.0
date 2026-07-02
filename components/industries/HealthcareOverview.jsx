@@ -23,7 +23,7 @@ export default function HealthcareOverview() {
                 alt="Healthcare Supply Chain"
                 width={1200}
                 height={850}
-                
+
                 
                 className="
                   w-full
