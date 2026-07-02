@@ -24,6 +24,7 @@ export default function HealthcareOverview() {
                 width={1200}
                 height={850}
                 
+                
                 className="
                   w-full
                   h-auto
