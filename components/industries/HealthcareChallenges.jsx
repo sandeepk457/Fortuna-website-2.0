@@ -64,7 +64,7 @@ export default function HealthcareChallenges() {
   className="absolute inset-0 bg-cover bg-center bg-no-repeat"
   style={{
     backgroundImage:
-      "url('/images/industries/Grid/healthcare1.png')",
+      "url('/images/industries/grid/healthcare1.png')",
   }}
 />
 

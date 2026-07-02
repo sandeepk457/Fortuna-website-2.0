@@ -19,7 +19,7 @@ export default function HealthcareOverview() {
             <div className="overflow-hidden rounded-[32px] shadow-2xl">
 
               <Image
-                src="/images/industries/Grid/Pharma & healthcare.png"
+                src="/images/industries/grid/Pharma & healthcare.png"
                 alt="Healthcare Supply Chain"
                 width={1200}
                 height={850}
