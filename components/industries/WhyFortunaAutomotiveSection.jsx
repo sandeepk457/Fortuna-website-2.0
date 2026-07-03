@@ -120,14 +120,11 @@ export default function WhyFortunaAutomotiveSection() {
           <div className="mx-auto mt-8 h-1 w-44 rounded-full bg-gradient-to-r from-[#005F99] to-[#C8102E]" />
 
           <p className="mt-10 text-xl leading-9 text-white/90 max-w-4xl mx-auto">
-
-            Fortuna empowers automotive manufacturers with intelligent
-            production planning, supplier collaboration, warehouse
-            automation, AI-driven manufacturing intelligence and
-            end-to-end supply chain visibility through one unified
-            digital platform.
-
-          </p>
+  Fortuna empowers manufacturing organizations with intelligent supply
+  chain automation, AI-powered decision intelligence, warehouse execution,
+  inventory visibility and seamless enterprise connectivity designed for
+  modern digital operations.
+</p>
 
         </div>
 

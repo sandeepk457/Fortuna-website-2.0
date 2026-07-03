@@ -1,0 +1,26 @@
+[35mapp/globals.css[m[36m:[m    [1;31mtransform[m: translateY(0px);
+[35mapp/globals.css[m[36m:[m    [1;31mtransform[m: translateY(-10px);
+[35mapp/globals.css[m[36m:[m    [1;31mtransform[m: scale(1) translateY(0px);
+[35mapp/globals.css[m[36m:[m    [1;31mtransform[m: scale(1.03) translateY(-10px);
+[35mapp/globals.css[m[36m:[m    [1;31mtransform[m: scale(1) translateY(0px);
+[35mcomponents/about/WhoWeAreSection.jsx[m[36m:[m              enterprise software company focused on [1;31mtransform[ming
+[35mcomponents/ai/HowIntelliAIPowersSection.jsx[m[36m:[m              Intelli AI [1;31mtransform[ms raw operational data into
+[35mcomponents/ai/IndustryChallengesSection.jsx[m[36m:[m              Fortuna IntelliAI [1;31mtransform[ms reactive supply chains into
+[35mcomponents/ai/MeetTheIntelligenceLayerSection.jsx[m[36m:[m              IntelliAI [1;31mtransform[ms every supply chain process
+[35mcomponents/ai/TrustedIntegrationsSection.jsx[m[36m:[m              technology investments, [1;31mtransform[ming fragmented data into
+[35mcomponents/contact/ContactHero.jsx[m[36m:[m            warehouse automation, procurement [1;31mtransform[mation
+[35mpackage-lock.json[m[36m:[m        "@babel/helper-module-[1;31mtransform[ms": "^7.29.7",
+[35mpackage-lock.json[m[36m:[m    "node_modules/@babel/helper-module-[1;31mtransform[ms": {
+[35mpackage-lock.json[m[36m:[m      "resolved": "https://registry.npmjs.org/@babel/helper-module-[1;31mtransform[ms/-/helper-module-[1;31mtransform[ms-7.29.7.tgz",
+[35mpackage-lock.json[m[36m:[m    "node_modules/@babel/plugin-[1;31mtransform[m-modules-commonjs": {
+[35mpackage-lock.json[m[36m:[m      "resolved": "https://registry.npmjs.org/@babel/plugin-[1;31mtransform[m-modules-commonjs/-/plugin-[1;31mtransform[m-modules-commonjs-7.29.7.tgz",
+[35mpackage-lock.json[m[36m:[m        "@babel/helper-module-[1;31mtransform[ms": "^7.29.7",
+[35mpackage-lock.json[m[36m:[m    "node_modules/@babel/plugin-[1;31mtransform[m-typescript": {
+[35mpackage-lock.json[m[36m:[m      "resolved": "https://registry.npmjs.org/@babel/plugin-[1;31mtransform[m-typescript/-/plugin-[1;31mtransform[m-typescript-7.29.7.tgz",
+[35mpackage-lock.json[m[36m:[m        "@babel/plugin-[1;31mtransform[m-modules-commonjs": "^7.29.7",
+[35mpackage-lock.json[m[36m:[m        "@babel/plugin-[1;31mtransform[m-typescript": "^7.29.7"
+[35mpackage-lock.json[m[36m:[m        "@babel/plugin-[1;31mtransform[m-typescript": "^7.28.0",
+[35msections/home/AboutSection.tsx[m[36m:[m              enterprise platform helping organizations [1;31mtransform[m
+[35msections/home/EcosystemSection.tsx[m[36m:[m      <span className="ml-2 transition-[1;31mtransform[m duration-300 group-hover:translate-x-2">
+[35msections/home/IndustriesSection.tsx[m[36m:[m    className="w-full h-full object-cover group-hover:scale-110 transition-[1;31mtransform[m duration-700"
+[35msections/home/IndustriesSection.tsx[m[36m:[m  <button className="mt-6 text-[#C8102E] font-semibold text-lg group-hover:translate-x-2 transition-[1;31mtransform[m duration-300">

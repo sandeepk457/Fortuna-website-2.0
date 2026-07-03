@@ -1,12 +1,27 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
-import Image from "next/image";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
 
-import { Menu, X } from "lucide-react";
+import {
+  Menu,
+  ChevronDown,
+} from "lucide-react";
+
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetClose,
+} from "@/components/ui/sheet";
+
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 import ProductMegaMenu from "./ProductMegaMenu";
 import IndustriesMegaMenu from "./IndustriesMegaMenu";
@@ -16,20 +31,74 @@ export default function Navbar() {
 
   const pathname = usePathname();
 
-   const [mobileMenu, setMobileMenu] = useState(false);
+  const products = [
+  {
+    title: "Fortuna SIMS",
+    href: "/products/sims",
+  },
+  {
+    title: "Fortuna TMS",
+    href: "/products/tms",
+  },
+  {
+    title: "DemandSense AI",
+    href: "/products/demandsense",
+  },
+  {
+    title: "Lastmile AI",
+    href: "/products/lastmile-ai",
+  },
+  {
+    title: "Plan CoPilot",
+    href: "/products/plan-copilot",
+  },
+  {
+    title: "Connect Hub",
+    href: "/products/connect-hub",
+  },
+  {
+    title: "Enterprise Asset Management",
+    href: "/products/eam",
+  },
+];
 
+const industries = [
+  {
+    title: "Manufacturing",
+    href: "/industries/manufacturing",
+  },
+  {
+    title: "Logistics",
+    href: "/industries/logistics",
+  },
+  {
+    title: "Retail",
+    href: "/industries/retail",
+  },
+  {
+    title: "Pharmaceuticals",
+    href: "/industries/pharma",
+  },
+];
 
-   useEffect(() => {
-  if (mobileMenu) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "";
-  }
-
-  return () => {
-    document.body.style.overflow = "";
-  };
-}, [mobileMenu]);
+const resources = [
+  {
+    title: "Blogs",
+    href: "/resources/blogs",
+  },
+  {
+    title: "Case Studies",
+    href: "/resources/case-studies",
+  },
+  {
+    title: "eBooks",
+    href: "/resources/ebooks",
+  },
+  {
+    title: "Webinars",
+    href: "/resources/webinars",
+  },
+];
 
   const navClass = (path: string) =>
     `relative font-semibold transition-all duration-300 ${
@@ -57,99 +126,91 @@ export default function Navbar() {
 
         {/* Navigation */}
 
-        <nav className="ml-24 hidden lg:flex items-center gap-8 text-base">
+<nav className="ml-24 hidden lg:flex items-center gap-8 text-base">
 
-          <Link href="/" className={navClass("/")}>
-            Home
-            {pathname === "/" && (
-              <span className="absolute -bottom-2 left-0 w-full h-[3px] bg-[#C8102E] rounded-full" />
-            )}
-          </Link>
-
-          <Link href="/about" className={navClass("/about")}>
-            About
-            {pathname === "/about" && (
-              <span className="absolute -bottom-2 left-0 w-full h-[3px] bg-[#C8102E] rounded-full" />
-            )}
-          </Link>
-
-          <div className="relative group">
-
-  <button
-    className={`relative font-semibold transition-all duration-300 ${
-      pathname.startsWith("/products")
-        ? "text-[#C8102E]"
-        : "text-[#005F99] hover:text-[#C8102E]"
-    }`}
-  >
-    Products
-
-    {pathname.startsWith("/products") && (
+  <Link href="/" className={navClass("/")}>
+    Home
+    {pathname === "/" && (
       <span className="absolute -bottom-2 left-0 w-full h-[3px] bg-[#C8102E] rounded-full" />
     )}
-  </button>
+  </Link>
 
-  <ProductMegaMenu />
-
-</div>
-
-          <Link href="/ai-platform" className={navClass("/ai-platform")}>
-            AI Platform
-            {pathname === "/ai-platform" && (
-              <span className="absolute -bottom-2 left-0 w-full h-[3px] bg-[#C8102E] rounded-full" />
-            )}
-          </Link>
-
-          <div className="relative group">
-
-  <button
-    className={`relative font-semibold transition-all duration-300 ${
-      pathname.startsWith("/industries")
-        ? "text-[#C8102E]"
-        : "text-[#005F99] hover:text-[#C8102E]"
-    }`}
-  >
-    Industries
-
-    {pathname.startsWith("/industries") && (
+  <Link href="/about" className={navClass("/about")}>
+    About
+    {pathname === "/about" && (
       <span className="absolute -bottom-2 left-0 w-full h-[3px] bg-[#C8102E] rounded-full" />
     )}
-  </button>
+  </Link>
 
-  <IndustriesMegaMenu />
+  <div className="relative group">
+    <button
+      className={`relative font-semibold transition-all duration-300 ${
+        pathname.startsWith("/products")
+          ? "text-[#C8102E]"
+          : "text-[#005F99] hover:text-[#C8102E]"
+      }`}
+    >
+      Products
 
-</div>
+      {pathname.startsWith("/products") && (
+        <span className="absolute -bottom-2 left-0 w-full h-[3px] bg-[#C8102E] rounded-full" />
+      )}
+    </button>
 
-          <div className="relative group">
+    <ProductMegaMenu />
+  </div>
 
-  <button
-    className={`relative font-semibold transition-all duration-300 ${
-      pathname.startsWith("/resources")
-        ? "text-[#C8102E]"
-        : "text-[#005F99] hover:text-[#C8102E]"
-    }`}
-  >
-    Resources
-
-    {pathname.startsWith("/resources") && (
+  <Link href="/ai-platform" className={navClass("/ai-platform")}>
+    AI Platform
+    {pathname === "/ai-platform" && (
       <span className="absolute -bottom-2 left-0 w-full h-[3px] bg-[#C8102E] rounded-full" />
     )}
-  </button>
+  </Link>
 
-  <ResourcesMegaMenu />
+  <div className="relative group">
+    <button
+      className={`relative font-semibold transition-all duration-300 ${
+        pathname.startsWith("/industries")
+          ? "text-[#C8102E]"
+          : "text-[#005F99] hover:text-[#C8102E]"
+      }`}
+    >
+      Industries
 
-</div>
+      {pathname.startsWith("/industries") && (
+        <span className="absolute -bottom-2 left-0 w-full h-[3px] bg-[#C8102E] rounded-full" />
+      )}
+    </button>
 
-          <Link href="/contact" className={navClass("/contact")}>
-            Contact
-            {pathname === "/contact" && (
-              <span className="absolute -bottom-2 left-0 w-full h-[3px] bg-[#C8102E] rounded-full" />
-            )}
-          </Link>
+    <IndustriesMegaMenu />
+  </div>
 
-          
+  <div className="relative group">
+    <button
+      className={`relative font-semibold transition-all duration-300 ${
+        pathname.startsWith("/resources")
+          ? "text-[#C8102E]"
+          : "text-[#005F99] hover:text-[#C8102E]"
+      }`}
+    >
+      Resources
 
-        </nav>
+      {pathname.startsWith("/resources") && (
+        <span className="absolute -bottom-2 left-0 w-full h-[3px] bg-[#C8102E] rounded-full" />
+      )}
+    </button>
+
+    <ResourcesMegaMenu />
+  </div>
+
+  <Link href="/contact" className={navClass("/contact")}>
+    Contact
+    {pathname === "/contact" && (
+      <span className="absolute -bottom-2 left-0 w-full h-[3px] bg-[#C8102E] rounded-full" />
+    )}
+  </Link>
+
+</nav>
 
 {/* Right Side */}
 
@@ -183,159 +244,510 @@ export default function Navbar() {
 
   {/* Mobile Hamburger */}
 
-  <button
-    onClick={() => setMobileMenu(true)}
-    className="
+  <Sheet>
+
+    <SheetTrigger asChild>
+
+      <button
+        className="
       lg:hidden
-
-      p-2
-
       rounded-lg
-
+      p-2
       text-[#005F99]
-
       hover:bg-slate-100
-    "
-  >
-    <Menu size={30} />
-  </button>
+      transition
+      "
+      >
+        <Menu size={30} />
+      </button>
 
-</div>
-
-      </div>
+    </SheetTrigger>
 
     {/* =========================
       Mobile Menu
-========================= */}
+    ========================= */}
 
 
-
-{mobileMenu && (
-<div
-  className="
-    fixed
-    inset-0
-    z-[99999]
-    lg:hidden
-
+    <SheetContent
+      side="right"
+      className="
+    w-full
+sm:w-[390px]
+    p-0
     bg-white
-
+    border-l
+    border-slate-200
     overflow-y-auto
-
-    isolate
   "
->
-    {/* Top Bar */}
-    <div className="flex items-center justify-between px-6 py-5 border-b border-slate-200">
+    >
 
-      <Image
-  src="/images/logos/Logo(3).png"
-  alt="Fortuna"
-  width={220}
-  height={60}
-  className="w-48 h-auto"
-/>
+      {/* Logo */}
 
-      <button onClick={() => setMobileMenu(false)}>
-        <X size={30} />
+      <div className="border-b border-slate-200 px-6 py-6">
+
+        <Image
+          src="/images/logos/Logo(3).png"
+          alt="Fortuna"
+          width={220}
+          height={60}
+          className="w-48 h-auto"
+        />
+
+      </div>
+
+      {/* Navigation */}
+
+      <div className="py-3">
+
+        <Link
+          href="/"
+          className={`
+${navClass("/")} 
+
+block
+px-6
+py-4
+text-lg
+font-semibold
+rounded-lg
+transition-all
+duration-300
+hover:bg-slate-50
+`}
+        >
+          Home
+        </Link>
+
+    <Link
+      href="/about"
+      className={`${navClass("/about")} block px-6 py-4 text-lg font-semibold`}
+    >
+      About
+    </Link>
+
+    {/* PRODUCTS */}
+
+    <Accordion
+      type="single"
+      collapsible
+    >
+
+      <AccordionItem value="products">
+
+        <AccordionTrigger
+          className="
+            px-6
+            text-lg
+            font-semibold
+            text-[#005F99]
+            hover:text-[#C8102E]
+          "
+        >
+          Products
+        </AccordionTrigger>
+
+        <AccordionContent>
+
+          <div className="flex flex-col">
+
+  <SheetClose asChild>
+    <Link
+      href="/products/sims"
+      className="
+        block
+        px-10
+        py-3
+        text-slate-600
+        transition-all
+        duration-300
+        hover:bg-slate-50
+        hover:text-[#C8102E]
+      "
+    >
+      Fortuna SIMS
+    </Link>
+  </SheetClose>
+
+  <SheetClose asChild>
+    <Link
+      href="/products/tms"
+      className="
+        block
+        px-10
+        py-3
+        text-slate-600
+        transition-all
+        duration-300
+        hover:bg-slate-50
+        hover:text-[#C8102E]
+      "
+    >
+      Fortuna TMS
+    </Link>
+  </SheetClose>
+
+  <SheetClose asChild>
+    <Link
+      href="/products/demandsense"
+      className="
+        block
+        px-10
+        py-3
+        text-slate-600
+        transition-all
+        duration-300
+        hover:bg-slate-50
+        hover:text-[#C8102E]
+      "
+    >
+      DemandSense AI
+    </Link>
+  </SheetClose>
+
+  <SheetClose asChild>
+    <Link
+      href="/products/lastmile-ai"
+      className="
+        block
+        px-10
+        py-3
+        text-slate-600
+        transition-all
+        duration-300
+        hover:bg-slate-50
+        hover:text-[#C8102E]
+      "
+    >
+      Lastmile AI
+    </Link>
+  </SheetClose>
+
+  <SheetClose asChild>
+    <Link
+      href="/products/plan-copilot"
+      className="
+        block
+        px-10
+        py-3
+        text-slate-600
+        transition-all
+        duration-300
+        hover:bg-slate-50
+        hover:text-[#C8102E]
+      "
+    >
+      Plan CoPilot
+    </Link>
+  </SheetClose>
+
+
+  <SheetClose asChild>
+    <Link
+      href="/products/plan-copilot"
+      className="
+        block
+        px-10
+        py-3
+        text-slate-600
+        transition-all
+        duration-300
+        hover:bg-slate-50
+        hover:text-[#C8102E]
+      "
+    >
+      Yard Sync
+    </Link>
+  </SheetClose>
+
+  <SheetClose asChild>
+    <Link
+      href="/products/connect-hub"
+      className="
+        block
+        px-10
+        py-3
+        text-slate-600
+        transition-all
+        duration-300
+        hover:bg-slate-50
+        hover:text-[#C8102E]
+      "
+    >
+      Connect Hub
+    </Link>
+  </SheetClose>
+
+  <SheetClose asChild>
+    <Link
+      href="/products/eam"
+      className="
+        block
+        px-10
+        py-3
+        text-slate-600
+        transition-all
+        duration-300
+        hover:bg-slate-50
+        hover:text-[#C8102E]
+      "
+    >
+      Enterprise Asset Management
+    </Link>
+  </SheetClose>
+
+</div>
+
+        </AccordionContent>
+
+      </AccordionItem>
+
+    </Accordion>
+
+    {/* AI */}
+
+    <Link
+      href="/ai-platform"
+      className={`${navClass("/ai-platform")} block px-6 py-4 text-lg font-semibold`}
+    >
+      AI Platform
+    </Link>
+
+    {/* INDUSTRIES */}
+
+    <Accordion
+      type="single"
+      collapsible
+    >
+
+      <AccordionItem value="industries">
+
+        <AccordionTrigger
+          className="
+            px-6
+            text-lg
+            font-semibold
+            text-[#005F99]
+          "
+        >
+          Industries
+        </AccordionTrigger>
+
+        <AccordionContent>
+
+          <div className="flex flex-col">
+
+  <SheetClose asChild>
+    <Link
+      href="/industries/manufacturing"
+      className="
+        block
+        px-10
+        py-3
+        text-slate-600
+        transition-all
+        duration-300
+        hover:bg-slate-50
+        hover:text-[#C8102E]
+      "
+    >
+      Manufacturing
+    </Link>
+  </SheetClose>
+
+  <SheetClose asChild>
+    <Link
+      href="/industries/logistics-distribution"
+      className="
+        block
+        px-10
+        py-3
+        text-slate-600
+        transition-all
+        duration-300
+        hover:bg-slate-50
+        hover:text-[#C8102E]
+      "
+    >
+      Logistics & Distribution
+    </Link>
+  </SheetClose>
+
+  <SheetClose asChild>
+    <Link
+      href="/industries/retail-consumer"
+      className="
+        block
+        px-10
+        py-3
+        text-slate-600
+        transition-all
+        duration-300
+        hover:bg-slate-50
+        hover:text-[#C8102E]
+      "
+    >
+      Retail & Consumer
+    </Link>
+  </SheetClose>
+
+  <SheetClose asChild>
+    <Link
+      href="/industries/pharmaceuticals-healthcare"
+      className="
+        block
+        px-10
+        py-3
+        text-slate-600
+        transition-all
+        duration-300
+        hover:bg-slate-50
+        hover:text-[#C8102E]
+      "
+    >
+      Pharmaceuticals & Healthcare
+    </Link>
+  </SheetClose>
+
+</div>
+        </AccordionContent>
+
+      </AccordionItem>
+
+    </Accordion>
+
+    {/* RESOURCES */}
+
+    <Accordion
+      type="single"
+      collapsible
+    >
+
+      <AccordionItem value="resources">
+
+        <AccordionTrigger
+          className="
+            px-6
+            text-lg
+            font-semibold
+            text-[#005F99]
+          "
+        >
+          Resources
+        </AccordionTrigger>
+
+        <AccordionContent>
+
+          <div className="flex flex-col">
+
+            <Link
+              href="/resources/blogs"
+              className="
+block
+px-10
+py-3
+text-slate-600
+transition-all
+duration-300
+hover:bg-slate-50
+hover:text-[#C8102E]
+"
+            >
+              Blogs
+            </Link>
+
+            <Link
+              href="/resources/case-studies"
+              className="
+block
+px-10
+py-3
+text-slate-600
+transition-all
+duration-300
+hover:bg-slate-50
+hover:text-[#C8102E]
+"
+            >
+              Case Studies
+            </Link>
+
+            <Link
+              href="/resources/ebooks"
+              className="
+block
+px-10
+py-3
+text-slate-600
+transition-all
+duration-300
+hover:bg-slate-50
+hover:text-[#C8102E]
+"
+            >
+              eBooks
+            </Link>
+
+            <Link
+              href="/resources/webinars"
+              className="
+block
+px-10
+py-3
+text-slate-600
+transition-all
+duration-300
+hover:bg-slate-50
+hover:text-[#C8102E]
+"
+            >
+              Webinars
+            </Link>
+
+          </div>
+
+        </AccordionContent>
+
+      </AccordionItem>
+
+    </Accordion>
+
+    <Link
+      href="/contact"
+      className={`${navClass("/contact")} block px-6 py-4 text-lg font-semibold`}
+    >
+      Contact
+    </Link>
+
+    {/* CTA */}
+
+    <div className="px-6 pt-8">
+
+      <button
+        className="
+          w-full
+          rounded-full
+          bg-[#C8102E]
+          py-4
+          font-semibold
+          text-white
+          transition
+          hover:scale-[1.02]
+          hover:bg-[#aa0f27]
+        "
+      >
+        Request Demo
       </button>
 
     </div>
 
-    {/* Menu */}
-
-<nav className="flex flex-col px-6 py-4">
-
-  <Link
-    href="/"
-    onClick={() => setMobileMenu(false)}
-    className={`${navClass("/")} py-5 px-2 border-b border-slate-200 text-xl`}
-  >
-    Home
-  </Link>
-
-  <Link
-    href="/about"
-    onClick={() => setMobileMenu(false)}
-    className={`${navClass("/about")} py-5 border-b border-slate-200 text-lg`}
-  >
-    About
-  </Link>
-
-  <Link
-    href="/products"
-    onClick={() => setMobileMenu(false)}
-    className={`${
-      pathname.startsWith("/products")
-        ? "text-[#C8102E]"
-        : "text-[#005F99] hover:text-[#C8102E]"
-    } font-semibold py-5 border-b border-slate-200 text-lg`}
-  >
-    Products
-  </Link>
-
-  <Link
-    href="/ai-platform"
-    onClick={() => setMobileMenu(false)}
-    className={`${navClass("/ai-platform")} py-5 border-b border-slate-200 text-lg`}
-  >
-    AI Platform
-  </Link>
-
-  <Link
-    href="/industries"
-    onClick={() => setMobileMenu(false)}
-    className={`${
-      pathname.startsWith("/industries")
-        ? "text-[#C8102E]"
-        : "text-[#005F99] hover:text-[#C8102E]"
-    } font-semibold py-5 border-b border-slate-200 text-lg`}
-  >
-    Industries
-  </Link>
-
-  <Link
-    href="/resources"
-    onClick={() => setMobileMenu(false)}
-    className={`${
-      pathname.startsWith("/resources")
-        ? "text-[#C8102E]"
-        : "text-[#005F99] hover:text-[#C8102E]"
-    } font-semibold py-5 border-b border-slate-200 text-lg`}
-  >
-    Resources
-  </Link>
-
-  <Link
-    href="/contact"
-    onClick={() => setMobileMenu(false)}
-    className={`${navClass("/contact")} py-5 border-b border-slate-200 text-lg`}
-  >
-    Contact
-  </Link>
-
-  <button
-    className="
-mt-10
-mx-2
-rounded-full
-bg-[#C8102E]
-py-5
-text-lg
-font-semibold
-text-white
-shadow-lg
-hover:bg-[#a50d25]
-transition-all
-"
-  >
-    Request Demo
-  </button>
-
-</nav>
-
   </div>
-)}
+
+</SheetContent>
+
+</Sheet>
+
+</div>
+</div>
 
     </header>
   );
