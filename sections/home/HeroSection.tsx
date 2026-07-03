@@ -9,7 +9,7 @@ export default function HeroSection() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % heroSlides.length);
-    }, 1800
+    }, 2000
 );
 
     return () => clearInterval(interval);
@@ -18,13 +18,34 @@ export default function HeroSection() {
   return (
     <section className="relative h-screen overflow-hidden">
 
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center transition-all duration-1000"
-        style={{
-          backgroundImage: `url(${heroSlides[current]})`,
-        }}
-      />
+      {/* Background Images */}
+
+{heroSlides.map((image, index) => (
+
+  <div
+    key={index}
+    className={`
+      absolute
+      inset-0
+      bg-cover
+      bg-center
+
+      transition-opacity
+      duration-1000
+      ease-in-out
+
+      ${
+        index === current
+          ? "opacity-100"
+          : "opacity-0"
+      }
+    `}
+    style={{
+      backgroundImage: `url(${image})`,
+    }}
+  />
+
+))}
 
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/60" />

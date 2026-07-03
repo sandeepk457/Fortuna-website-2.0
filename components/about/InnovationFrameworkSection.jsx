@@ -80,7 +80,19 @@ export default function InnovationFrameworkSection() {
 
 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
 
-<div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-100 hover:-translate-y-2 transition-all duration-500">
+<div className="
+relative
+z-50
+bg-white
+rounded-3xl
+p-8
+shadow-xl
+border
+border-slate-100
+hover:-translate-y-2
+transition-all
+duration-500
+">
 
   <Brain className="text-[#C8102E]" size={40} />
 
@@ -95,7 +107,19 @@ export default function InnovationFrameworkSection() {
 </div>
 
 
-<div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-100 hover:-translate-y-2 transition-all duration-500">
+<div className="
+relative
+z-50
+bg-white
+rounded-3xl
+p-8
+shadow-xl
+border
+border-slate-100
+hover:-translate-y-2
+transition-all
+duration-500
+">
 
   <Radar className="text-[#005F99]" size={40} />
 
@@ -110,7 +134,19 @@ export default function InnovationFrameworkSection() {
 
 </div>
 
-<div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-100 hover:-translate-y-2 transition-all duration-500">
+<div className="
+relative
+z-50
+bg-white
+rounded-3xl
+p-8
+shadow-xl
+border
+border-slate-100
+hover:-translate-y-2
+transition-all
+duration-500
+">
 
   <Network className="text-[#C8102E]" size={40} />
 
@@ -126,7 +162,18 @@ export default function InnovationFrameworkSection() {
 
 </div>
 
-<div className="bg-white rounded-3xl p-8 shadow-xl border border-slate-100 hover:-translate-y-2 transition-all duration-500">
+<div className="
+relative
+bg-white
+rounded-3xl
+p-8
+shadow-xl
+border
+border-slate-100
+hover:-translate-y-2
+transition-all
+duration-500
+">
 
   <Trophy className="text-[#005F99]" size={40} />
 
