@@ -126,14 +126,14 @@ export default function WhyFortunaIndustriesSection() {
 
           <div className="mx-auto mt-8 h-1 w-40 rounded-full bg-gradient-to-r from-[#005F99] via-white to-[#C8102E]" />
 
-          <p className="mt-10 text-xl leading-9 text-slate-700">
+        <div className="mx-auto mt-8 h-1 w-40 rounded-full bg-gradient-to-r from-[#005F99] via-white to-[#C8102E]" />
 
-            Fortuna empowers manufacturing organizations with intelligent
-            supply chain automation, AI-powered decision intelligence,
-            warehouse execution, inventory visibility and seamless enterprise
-            connectivity designed for modern digital operations.
-
-          </p>
+<p className="mt-10 max-w-4xl mx-auto text-xl leading-9 text-white">
+  Fortuna empowers manufacturing organizations with intelligent
+  supply chain automation, AI-powered decision intelligence,
+  warehouse execution, inventory visibility and seamless enterprise
+  connectivity designed for modern digital operations.
+</p>
 
        
 

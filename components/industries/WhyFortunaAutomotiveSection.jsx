@@ -73,7 +73,7 @@ export default function WhyFortunaAutomotiveSection() {
 
       {/* Dark Overlay */}
 
-      <div className="absolute inset-0 bg-gradient-to-r from-[#001827]/75 via-[#001827]/45 to-black/20" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#001827]/90 via-[#001827]/75 to-black/60" />
 
       {/* Blue Glow */}
 
@@ -119,7 +119,7 @@ export default function WhyFortunaAutomotiveSection() {
 
           <div className="mx-auto mt-8 h-1 w-44 rounded-full bg-gradient-to-r from-[#005F99] to-[#C8102E]" />
 
-          <p className="mt-10 text-xl leading-9 text-white/90 max-w-4xl mx-auto">
+          <p className="mt-10 max-w-4xl mx-auto text-xl leading-9 font-medium text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.35)]">
   Fortuna empowers manufacturing organizations with intelligent supply
   chain automation, AI-powered decision intelligence, warehouse execution,
   inventory visibility and seamless enterprise connectivity designed for
