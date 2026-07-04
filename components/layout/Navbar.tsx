@@ -92,12 +92,12 @@ const resources = [
     href: "/resources/case-studies",
   },
   {
-    title: "eBooks",
-    href: "/resources/ebooks",
+    title: "Brochures",
+    href: "/resources/brochures",
   },
   {
-    title: "Webinars",
-    href: "/resources/webinars",
+    title: "Supply Chain Trends",
+    href: "/resources/supply-chain-trends",
   },
 ];
 
@@ -707,7 +707,7 @@ hover:text-[#C8102E]
             </Link>
 
             <Link
-              href="/resources/ebooks"
+              href="/resources/Brochures"
               className="
 block
 px-10
@@ -719,11 +719,11 @@ hover:bg-slate-50
 hover:text-[#C8102E]
 "
             >
-              eBooks
+              Brochures
             </Link>
 
             <Link
-              href="/resources/webinars"
+              href="/resources/Supply-Chain-Trends"
               className="
 block
 px-10
@@ -735,7 +735,7 @@ hover:bg-slate-50
 hover:text-[#C8102E]
 "
             >
-              Webinars
+              Supply Chain Trends
             </Link>
 
           </div>
@@ -774,6 +774,45 @@ hover:text-[#C8102E]
       </button>
 
     </div>
+
+    <div className="px-6 pt-5 pb-8">
+  <a
+    href="https://www.linkedin.com/company/fortuna-global-supply-chain-systems/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="
+      group
+      flex
+      items-center
+      justify-center
+      gap-3
+      rounded-full
+      border
+      border-slate-200
+      bg-white
+      py-3
+      font-semibold
+      text-[#0A66C2]
+
+      transition-all
+      duration-300
+      ease-in-out
+
+      hover:bg-[#0A66C2]
+      hover:text-white
+      hover:border-[#0A66C2]
+      hover:scale-[1.03]
+
+      hover:shadow-[0_0_20px_rgba(10,102,194,0.45)]
+    "
+  >
+    <FaLinkedinIn className="text-xl transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" />
+
+    <span className="tracking-wide">
+      Follow us on LinkedIn
+    </span>
+  </a>
+</div>
 
   </div>
 
