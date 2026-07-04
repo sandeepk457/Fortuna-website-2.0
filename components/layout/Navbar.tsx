@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { FaLinkedinIn } from "react-icons/fa";
 
 import {
   Menu,
@@ -215,6 +216,40 @@ const resources = [
 {/* Right Side */}
 
 <div className="ml-auto flex items-center gap-4">
+
+  {/* LinkedIn */}
+
+  <a
+    href="https://www.linkedin.com/company/fortuna-global-supply-chain-systems/"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="LinkedIn"
+    className="
+      hidden lg:flex
+      h-11
+      w-11
+      items-center
+      justify-center
+      rounded-full
+      border
+      border-slate-200
+      bg-white
+      text-[#0A66C2]
+      shadow-sm
+      transition-all
+      duration-300
+      hover:scale-110
+      hover:border-[#0A66C2]
+      hover:bg-[#0A66C2]
+      hover:text-white
+      hover:shadow-lg
+    "
+  >
+    <FaLinkedinIn className="h-5 w-5" />
+  </a>
+
+  
+
 
   {/* Desktop CTA */}
 
