@@ -387,7 +387,7 @@ hover:bg-slate-50
 
   <SheetClose asChild>
     <Link
-      href="/products/sims"
+      href="/products/fortuna-sims"
       className="
         block
         px-10
