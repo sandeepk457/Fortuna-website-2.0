@@ -186,7 +186,7 @@ export default function FeaturesSection() {
             ENTERPRISE CAPABILITIES
           </p>
 
-          <h3 className="mt-4 text-4xl font-bold text-slate-900">
+         <h3 className="mt-4 text-4xl font-bold text-[#C8102E]">
             Everything You Need
             <span className="block text-[#005F99]">
               To Run Modern Supply Chains
