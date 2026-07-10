@@ -8,6 +8,7 @@ import ProcessFlowSection from "./components/ProcessFlowSection";
 import FeaturesSection from "./components/FeaturesSection";
 import ArchitectureSection from "./components/ArchitectureSection";
 import SecuritySection from "./components/SecuritySection";
+import IntegrattionsSection from "./components/IntegrationsSection";
 
 export default function FortunaSIMSPage() {
   return (
@@ -22,6 +23,7 @@ export default function FortunaSIMSPage() {
       <FeaturesSection />
       <ArchitectureSection />
       <SecuritySection />
+      <IntegrattionsSection />
     </>
   );
 }
