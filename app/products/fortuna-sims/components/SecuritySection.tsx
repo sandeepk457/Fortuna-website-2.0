@@ -107,12 +107,14 @@ export default function SecuritySection() {
             Enterprise-Grade Security
           </span>
 
-          <h2 className="mt-6 text-4xl font-bold tracking-tight text-slate-900 lg:text-5xl">
-            Security Built for
-            <span className="text-[#005F99]">
-              {" "}Enterprise Trust
-            </span>
-          </h2>
+          <h2 className="mt-6 text-4xl font-bold tracking-tight lg:text-5xl">
+  <span className="text-[#C8102E]">
+    Security Built for
+  </span>
+  <span className="text-[#005F99]">
+    {" "}Enterprise Trust
+  </span>
+</h2>
 
           <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-600">
             Fortuna SIMS safeguards your supply chain with enterprise-grade

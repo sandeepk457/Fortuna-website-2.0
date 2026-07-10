@@ -9,6 +9,8 @@ import FeaturesSection from "./components/FeaturesSection";
 import ArchitectureSection from "./components/ArchitectureSection";
 import SecuritySection from "./components/SecuritySection";
 import IntegrattionsSection from "./components/IntegrationsSection";
+import FAQSection from "./components/FAQSection";
+import CTASection from "./components/CTASection";
 
 export default function FortunaSIMSPage() {
   return (
@@ -24,6 +26,8 @@ export default function FortunaSIMSPage() {
       <ArchitectureSection />
       <SecuritySection />
       <IntegrattionsSection />
+      <FAQSection />
+      <CTASection />
     </>
   );
 }
