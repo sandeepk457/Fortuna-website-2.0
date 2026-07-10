@@ -95,14 +95,18 @@ export default function CTASection() {
 
             </div>
 
+
             {/* Floating Badge */}
             <motion.div
+            
               animate={{ y: [-5, 5, -5] }}
               transition={{ repeat: Infinity, duration: 5 }}
               className="absolute right-6 top-6 rounded-full bg-white px-5 py-2 text-sm font-semibold text-[#C8102E] shadow-xl"
             >
               Enterprise Ready
             </motion.div>
+
+
 
             {/* Floating Badge */}
             <motion.div
