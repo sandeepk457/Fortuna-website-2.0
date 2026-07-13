@@ -160,7 +160,19 @@ const [serverError, setServerError] = useState("");
     // Backend API
     // await axios.post("/api/contact", formData);
 
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    const response = await fetch("/api/contact", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(formData),
+});
+
+const data = await response.json();
+
+if (!response.ok) {
+  throw new Error(data.message);
+}
 
     setSuccess(true);
 setShowSuccessModal(true);
@@ -169,14 +181,15 @@ setFormData(initialForm);
     
 
   } catch (err) {
-    setServerError(
-      "Something went wrong. Please try again."
-    );
-  } finally {
-    setLoading(false);
+  if (err instanceof Error) {
+    setServerError(err.message);
+  } else {
+    setServerError("Something went wrong. Please try again.");
   }
-};
-
+} finally {
+  setLoading(false);
+}
+  };
   return (
     <section className="relative overflow-hidden py-32 bg-slate-50">
 
@@ -210,7 +223,7 @@ setFormData(initialForm);
 
             <span className="block text-[#C8102E]">
 
-              Fortuna Experts
+              Experts
 
             </span>
 
