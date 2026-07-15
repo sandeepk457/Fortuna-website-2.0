@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 
+
 import "./globals.css";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+
+
+import { TanixProvider } from "@/components/tanix";
+import Tanix from "@/components/tanix/Tanix";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -72,15 +77,19 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${spaceGrotesk.variable}`}
     >
-      <body className="min-h-screen bg-background text-foreground antialiased">
-        <Navbar />
+     <body className="min-h-screen bg-background text-foreground antialiased">
+  <TanixProvider>
+    <Navbar />
 
-        {children}
+    {children}
 
-        <Footer />
+    <Footer />
 
-        <ScrollToTop />
-      </body>
+    <ScrollToTop />
+
+    <Tanix />
+  </TanixProvider>
+</body>
     </html>
   );
 }
