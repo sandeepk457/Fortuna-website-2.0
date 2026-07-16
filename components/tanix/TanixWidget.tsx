@@ -3,24 +3,21 @@
 import { AnimatePresence, motion } from "framer-motion";
 
 import TanixHeader from "./TanixHeader";
-import { useTanix } from "./hooks";
 import TanixContent from "./TanixContent";
 import TanixFooter from "./TanixFooter";
+import { useTanix } from "./hooks";
 
 export default function TanixWidget() {
-
   const { isOpen } = useTanix();
 
   return (
     <AnimatePresence>
-
       {isOpen && (
-
         <motion.div
           initial={{
             opacity: 0,
-            scale: 0.85,
-            y: 30,
+            scale: 0.92,
+            y: 40,
           }}
           animate={{
             opacity: 1,
@@ -29,27 +26,48 @@ export default function TanixWidget() {
           }}
           exit={{
             opacity: 0,
-            scale: 0.85,
-            y: 30,
+            scale: 0.92,
+            y: 40,
           }}
           transition={{
             duration: 0.25,
           }}
-          className="fixed bottom-24 right-6 z-[100] flex h-[700px] max-h-[85vh] w-[420px] flex-col overflow-hidden rounded-[28px] border border-white/20 bg-white/80 backdrop-blur-2xl shadow-[0_25px_80px_rgba(0,0,0,0.25)]"
+          className="
+            fixed
+            inset-0
+            z-[100]
+
+            flex
+            flex-col
+
+            bg-white/95
+            backdrop-blur-2xl
+
+            sm:inset-auto
+            sm:bottom-24
+            sm:right-6
+
+            sm:h-[700px]
+            sm:max-h-[85vh]
+            sm:w-[420px]
+
+            sm:rounded-[28px]
+
+            border
+            border-white/20
+
+            overflow-hidden
+
+            shadow-[0_25px_80px_rgba(0,0,0,0.25)]
+          "
         >
+          <TanixHeader />
 
-        <TanixHeader />
+          <TanixContent />
 
-        <TanixContent />
-
-        <TanixFooter />
-
-          
-
+          <TanixFooter />
         </motion.div>
-
       )}
-
     </AnimatePresence>
   );
 }
