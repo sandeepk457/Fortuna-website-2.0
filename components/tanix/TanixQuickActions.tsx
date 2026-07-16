@@ -7,25 +7,39 @@ import {
   Building2,
   PhoneCall,
   ArrowRight,
+  BookOpen,
 } from "lucide-react";
+import { useState } from "react";
 
+import BrochureCenter from "./BrochureCenter";
 import { QUICK_ACTIONS } from "./constants";
 import { useTanix } from "./hooks";
 
 const icons = {
   products: Boxes,
-  ai: Bot,
+  brochures: BookOpen,
   demo: CalendarDays,
   industries: Building2,
   contact: PhoneCall,
   sales: PhoneCall,
+  ai: Bot,
 };
 
 
 
 export default function TanixQuickActions() {
+    const [isBrochureCenterOpen, setIsBrochureCenterOpen] = useState(false);
 
     const { addUserMessage } = useTanix();
+
+  if (isBrochureCenterOpen) {
+    return (
+      <section className="px-6 py-6">
+        <BrochureCenter />
+      </section>
+    );
+  }
+
   return (
     <section className="px-6 py-6">
 
@@ -45,7 +59,15 @@ export default function TanixQuickActions() {
 
             <button
               key={action.id}
-              onClick={() => addUserMessage(action.prompt)}
+              onClick={() => {
+  if (action.id === "brochures") {
+    setIsBrochureCenterOpen(true);
+    return;
+  }
+
+  console.log("Clicked:", action.id, action.prompt);
+addUserMessage(action.prompt);
+}}
               className="group flex w-full items-center justify-between rounded-2xl border border-slate-200 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:border-[#005F99] hover:shadow-xl"
             >
 

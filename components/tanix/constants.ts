@@ -15,6 +15,11 @@ export const QUICK_ACTIONS: QuickAction[] = [
     prompt: "Show me Fortuna products",
   },
   {
+    id: "brochures",
+    label: "Product Brochures",
+    prompt: "Show me all Fortuna product brochures",
+  },
+  {
     id: "demo",
     label: "Request Demo",
     prompt: "I want to request a demo",
