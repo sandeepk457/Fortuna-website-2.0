@@ -15,6 +15,8 @@ import BrochureCenter from "./BrochureCenter";
 import ProductCenter from "./ProductCenter";
 import { QUICK_ACTIONS } from "./constants";
 import ContactCenter from "./ContactCenter";
+import IndustryCenter from "./IndustryCenter";
+import IndustryDetails from "./IndustryDetails";
 import { useTanix } from "./hooks";
 
 const icons = {
@@ -31,8 +33,17 @@ const icons = {
 
 export default function TanixQuickActions() {
 const [activeScreen, setActiveScreen] = useState<
-  "home" | "products" | "brochures" | "contact"
+  | "home"
+  | "products"
+  | "product-details"
+  | "brochures"
+  | "industries"
+  | "industry-details"
+  | "contact"
 >("home");
+
+  const [selectedProduct, setSelectedProduct] = useState("");
+  const [selectedIndustry, setSelectedIndustry] = useState("");
 
     const { addUserMessage } = useTanix();
 
@@ -47,7 +58,45 @@ const [activeScreen, setActiveScreen] = useState<
   );
 }
 
+if (activeScreen === "industries") {
+  return (
+    <section className="px-6 py-6">
+      <IndustryCenter
+        onBack={() => setActiveScreen("home")}
+        onSelectIndustry={(industryId) => {
+          setSelectedIndustry(industryId);
+          setActiveScreen("industry-details");
+        }}
+      />
+    </section>
+  );
+}
 
+if (activeScreen === "industry-details") {
+  return (
+    <section className="px-6 py-6">
+      <IndustryDetails
+  industryId={selectedIndustry}
+  onBack={() => setActiveScreen("industries")}
+  onOpenProduct={(productName) => {
+    const productMap: Record<string, string> = {
+      "Fortuna SIMS": "sims",
+      "Fortuna TMS": "tms",
+      "Fortuna EAM": "eam",
+      "Fortuna DemandSense": "demandsense",
+      "Fortuna LastMile AI": "lastmile",
+      "Fortuna YardSync": "yardsync",
+      "Fortuna Connect Hub": "connecthub",
+      "Fortuna Plan Copilot": "plancopilot",
+    };
+
+    setSelectedProduct(productMap[productName]);
+    setActiveScreen("product-details");
+  }}
+/>
+    </section>
+  );
+}
 
   if (activeScreen === "brochures") {
   return (
@@ -101,6 +150,11 @@ if (action.id === "brochures") {
 
 if (action.id === "contact") {
   setActiveScreen("contact");
+  return;
+}
+
+if (action.id === "industries") {
+  setActiveScreen("industries");
   return;
 }
 
