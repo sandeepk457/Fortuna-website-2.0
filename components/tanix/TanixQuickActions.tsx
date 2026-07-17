@@ -35,7 +35,9 @@ export default function TanixQuickActions() {
   if (isBrochureCenterOpen) {
     return (
       <section className="px-6 py-6">
-        <BrochureCenter />
+        <BrochureCenter
+  onBack={() => setIsBrochureCenterOpen(false)}
+/>
       </section>
     );
   }
