@@ -12,7 +12,9 @@ import {
 import { useState } from "react";
 
 import BrochureCenter from "./BrochureCenter";
+import ProductCenter from "./ProductCenter";
 import { QUICK_ACTIONS } from "./constants";
+import ContactCenter from "./ContactCenter";
 import { useTanix } from "./hooks";
 
 const icons = {
@@ -28,19 +30,44 @@ const icons = {
 
 
 export default function TanixQuickActions() {
-    const [isBrochureCenterOpen, setIsBrochureCenterOpen] = useState(false);
+const [activeScreen, setActiveScreen] = useState<
+  "home" | "products" | "brochures" | "contact"
+>("home");
 
     const { addUserMessage } = useTanix();
 
-  if (isBrochureCenterOpen) {
-    return (
-      <section className="px-6 py-6">
-        <BrochureCenter
-  onBack={() => setIsBrochureCenterOpen(false)}
+  if (activeScreen === "products") {
+  return (
+    <section className="px-6 py-6">
+      <ProductCenter
+  onBack={() => setActiveScreen("home")}
+  onOpenContact={() => setActiveScreen("contact")}
 />
-      </section>
-    );
-  }
+    </section>
+  );
+}
+
+
+
+  if (activeScreen === "brochures") {
+  return (
+    <section className="px-6 py-6">
+      <BrochureCenter
+        onBack={() => setActiveScreen("home")}
+      />
+    </section>
+  );
+}
+      
+if (activeScreen === "contact") {
+  return (
+    <section className="px-6 py-6">
+      <ContactCenter
+        onBack={() => setActiveScreen("home")}
+      />
+    </section>
+  );
+}
 
   return (
     <section className="px-6 py-6">
@@ -62,10 +89,20 @@ export default function TanixQuickActions() {
             <button
               key={action.id}
               onClick={() => {
-  if (action.id === "brochures") {
-    setIsBrochureCenterOpen(true);
-    return;
-  }
+  if (action.id === "products") {
+  setActiveScreen("products");
+  return;
+}
+
+if (action.id === "brochures") {
+  setActiveScreen("brochures");
+  return;
+}
+
+if (action.id === "contact") {
+  setActiveScreen("contact");
+  return;
+}
 
   console.log("Clicked:", action.id, action.prompt);
 addUserMessage(action.prompt);
