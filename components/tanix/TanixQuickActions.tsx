@@ -17,6 +17,8 @@ import { QUICK_ACTIONS } from "./constants";
 import ContactCenter from "./ContactCenter";
 import IndustryCenter from "./IndustryCenter";
 import IndustryDetails from "./IndustryDetails";
+import DemoCenter from "./DemoCenter";
+import SalesCenter from "./SalesCenter";
 import { useTanix } from "./hooks";
 
 const icons = {
@@ -40,6 +42,8 @@ const [activeScreen, setActiveScreen] = useState<
   | "industries"
   | "industry-details"
   | "contact"
+  | "demo"
+  | "sales"
 >("home");
 
   const [selectedProduct, setSelectedProduct] = useState("");
@@ -67,6 +71,28 @@ if (activeScreen === "industries") {
           setSelectedIndustry(industryId);
           setActiveScreen("industry-details");
         }}
+      />
+    </section>
+  );
+}
+
+
+
+if (activeScreen === "demo") {
+  return (
+    <section className="px-6 py-6">
+      <DemoCenter
+        onBack={() => setActiveScreen("home")}
+      />
+    </section>
+  );
+}
+
+if (activeScreen === "sales") {
+  return (
+    <section className="px-6 py-6">
+      <SalesCenter
+        onBack={() => setActiveScreen("home")}
       />
     </section>
   );
@@ -155,6 +181,17 @@ if (action.id === "contact") {
 
 if (action.id === "industries") {
   setActiveScreen("industries");
+  return;
+}
+
+
+if (action.id === "demo") {
+  setActiveScreen("demo");
+  return;
+}
+
+if (action.id === "sales") {
+  setActiveScreen("sales");
   return;
 }
 
