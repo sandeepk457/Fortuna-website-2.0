@@ -19,6 +19,7 @@ import IndustryCenter from "./IndustryCenter";
 import IndustryDetails from "./IndustryDetails";
 import DemoCenter from "./DemoCenter";
 import SalesCenter from "./SalesCenter";
+import AISolutionsCenter from "./AISolutionsCenter";
 import { useTanix } from "./hooks";
 
 const icons = {
@@ -44,6 +45,7 @@ const [activeScreen, setActiveScreen] = useState<
   | "contact"
   | "demo"
   | "sales"
+  | "ai"
 >("home");
 
   const [selectedProduct, setSelectedProduct] = useState("");
@@ -144,6 +146,17 @@ if (activeScreen === "contact") {
   );
 }
 
+if (activeScreen === "ai") {
+  return (
+    <section className="px-6 py-6">
+      <AISolutionsCenter
+        onBack={() => setActiveScreen("home")}
+      />
+    </section>
+  );
+}
+
+
   return (
     <section className="px-6 py-6">
 
@@ -192,6 +205,11 @@ if (action.id === "demo") {
 
 if (action.id === "sales") {
   setActiveScreen("sales");
+  return;
+}
+
+if (action.id === "ai") {
+  setActiveScreen("ai");
   return;
 }
 
