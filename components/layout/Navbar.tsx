@@ -1,7 +1,7 @@
-"use client";
+﻿"use client";
 
-import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { FaLinkedinIn } from "react-icons/fa";
 
@@ -253,7 +253,7 @@ const resources = [
 
   {/* Desktop CTA */}
 
-  <button
+  <Link href="/request-demo"
     className="
       hidden lg:block
 
@@ -273,9 +273,7 @@ const resources = [
       transition-all
       duration-300
     "
-  >
-    Request Demo
-  </button>
+  >Request Demo</Link>
 
   {/* Mobile Hamburger */}
 
@@ -757,7 +755,7 @@ hover:text-[#C8102E]
 
     <div className="px-6 pt-8">
 
-      <button
+      <Link href="/request-demo"
         className="
           w-full
           rounded-full
@@ -769,9 +767,7 @@ hover:text-[#C8102E]
           hover:scale-[1.02]
           hover:bg-[#aa0f27]
         "
-      >
-        Request Demo
-      </button>
+      >Request Demo</Link>
 
     </div>
 
@@ -826,3 +822,4 @@ hover:text-[#C8102E]
     </header>
   );
 }
+

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -54,7 +54,7 @@ export default function CTASection() {
 
               {/* Primary Button */}
               <Link
-                href="/contact"
+                href="/request-demo"
                 className="inline-flex items-center justify-center rounded-xl bg-white px-8 py-4 text-base font-semibold text-[#C8102E] shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
               >
                 Request a Demo
@@ -129,23 +129,23 @@ export default function CTASection() {
           <div className="flex flex-wrap items-center justify-center gap-4">
 
             <div className="rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur-md transition-all duration-300 hover:bg-white/20">
-              ✓ Enterprise Ready
+              âœ“ Enterprise Ready
             </div>
 
             <div className="rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur-md transition-all duration-300 hover:bg-white/20">
-              ✓ AI Powered
+              âœ“ AI Powered
             </div>
 
             <div className="rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur-md transition-all duration-300 hover:bg-white/20">
-              ✓ Secure Platform
+              âœ“ Secure Platform
             </div>
 
             <div className="rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur-md transition-all duration-300 hover:bg-white/20">
-              ✓ API First
+              âœ“ API First
             </div>
 
             <div className="rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur-md transition-all duration-300 hover:bg-white/20">
-              ✓ Built for Enterprise Scale
+              âœ“ Built for Enterprise Scale
             </div>
 
           </div>
@@ -169,3 +169,4 @@ export default function CTASection() {
     </section>
   );
 }
+

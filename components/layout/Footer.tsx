@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import Image from "next/image";
 
 export default function Footer() {
@@ -133,9 +133,7 @@ export default function Footer() {
               <p>info@fortunaglobalsupplychain.com</p>
               <p>Visakhapatnam, India</p>
 
-              <button className="mt-4 bg-[#C8102E] px-6 py-3 rounded-xl font-semibold hover:scale-105 transition">
-                Request Demo
-              </button>
+              <Link href="/request-demo" className="mt-4 bg-[#C8102E] px-6 py-3 rounded-xl font-semibold hover:scale-105 transition">Request Demo</Link>
             </div>
           </div>
 
@@ -146,7 +144,7 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center text-white/70">
           <p>
-  © 2026 Fortuna Global Supply Chain Systems.
+  Â© 2026 Fortuna Global Supply Chain Systems.
   All Rights Reserved.
 </p>
 
@@ -160,3 +158,4 @@ export default function Footer() {
     </footer>
   );
 }
+

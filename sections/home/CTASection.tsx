@@ -1,3 +1,4 @@
+﻿import Link from "next/link";
 export default function CTASection() {
   return (
     <section className="relative py-32 overflow-hidden bg-[#031B34]">
@@ -65,7 +66,7 @@ export default function CTASection() {
 
         <div className="mt-12 flex flex-col md:flex-row justify-center gap-5">
 
-          <button
+          <Link href="/request-demo"
             className="
               px-8 py-4
               rounded-2xl
@@ -79,9 +80,7 @@ export default function CTASection() {
               hover:bg-[#E21B3C]
               hover:shadow-[0_0_30px_rgba(200,16,46,0.5)]
             "
-          >
-            Request Demo
-          </button>
+          >Request Demo</Link>
 
           <button
             className="
@@ -107,3 +106,4 @@ export default function CTASection() {
     </section>
   );
 }
+

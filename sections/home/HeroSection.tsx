@@ -1,5 +1,6 @@
-"use client";
+﻿"use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { heroSlides } from "@/data/heroSlides";
 
@@ -72,9 +73,7 @@ export default function HeroSection() {
 
           <div className="flex flex-col md:flex-row gap-4 justify-center">
 
-            <button className="bg-[#C8102E] hover:bg-red-700 text-white px-8 py-4 rounded-full font-semibold">
-              Request Demo
-            </button>
+            <Link href="/request-demo" className="bg-[#C8102E] hover:bg-red-700 text-white px-8 py-4 rounded-full font-semibold">Request Demo</Link>
 
             <button className="border border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-black transition">
               Explore Products
@@ -88,3 +87,4 @@ export default function HeroSection() {
     </section>
   );
 }
+

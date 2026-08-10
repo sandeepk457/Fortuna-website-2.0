@@ -1,5 +1,6 @@
-"use client";
+﻿"use client";
 
+import Link from "next/link";
 import { industryDetails } from "@/lib/tanix/industryDetails";
 
 interface IndustryDetailsProps {
@@ -35,7 +36,7 @@ export default function IndustryDetails({
           onClick={onBack}
           className="text-sm text-red-600 hover:underline"
         >
-          ← Back
+          â† Back
         </button>
 
         <h2 className="text-xl font-bold text-slate-900">
@@ -74,7 +75,7 @@ export default function IndustryDetails({
               key={item}
               className="flex items-center gap-2 text-sm text-slate-700"
             >
-              <span className="text-red-600">✓</span>
+              <span className="text-red-600">âœ“</span>
               {item}
             </div>
 
@@ -146,9 +147,7 @@ export default function IndustryDetails({
             Explore Products
           </button>
 
-          <button className="rounded-lg border border-[#C8102E] px-4 py-2 text-[#C8102E] hover:bg-red-50">
-            Request Demo
-          </button>
+          <Link href="/request-demo" className="rounded-lg border border-[#C8102E] px-4 py-2 text-[#C8102E] hover:bg-red-50">Request Demo</Link>
 
         </div>
 
@@ -157,3 +156,5 @@ export default function IndustryDetails({
     </div>
   );
 }
+
+
