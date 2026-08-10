@@ -6,7 +6,26 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
+    // ============================================================
+    // DEBUG
+    // ============================================================
+
+    console.log("========== CONTACT API DEBUG ==========");
+    console.log(
+      "DATABASE SOURCE:",
+      process.env.DATABASE_URL ? "DATABASE_URL" : "LOCAL DB"
+    );
+    console.log("ENQUIRY TYPE:", body.enquiryType);
+    console.log("FULL NAME:", body.fullName);
+    console.log("EMAIL:", body.email);
+    console.log("=======================================");
+
+    // ============================================================
+    // FORM DATA
+    // ============================================================
+
     const {
+      enquiryType = "CONTACT",
       fullName,
       email,
       company,
@@ -19,10 +38,15 @@ export async function POST(req: NextRequest) {
       message,
     } = body;
 
+    // ============================================================
+    // DATABASE INSERT
+    // ============================================================
+
     const result = await query(
       `
       INSERT INTO contact_enquiries
       (
+        enquiry_type,
         full_name,
         email,
         company,
@@ -36,11 +60,22 @@ export async function POST(req: NextRequest) {
       )
       VALUES
       (
-        $1,$2,$3,$4,$5,$6,$7,$8,$9,$10
+        $1,
+        $2,
+        $3,
+        $4,
+        $5,
+        $6,
+        $7,
+        $8,
+        $9,
+        $10,
+        $11
       )
       RETURNING id;
       `,
       [
+        enquiryType,
         fullName,
         email,
         company,
@@ -54,263 +89,230 @@ export async function POST(req: NextRequest) {
       ]
     );
 
+    const enquiryId = result.rows[0].id;
+
+    console.log("DATABASE INSERT SUCCESS");
+    console.log("ENQUIRY ID:", enquiryId);
+    console.log("ENQUIRY TYPE:", enquiryType);
+
+    // ============================================================
+    // REQUEST TYPE
+    // ============================================================
+
+    const isDemoRequest = enquiryType === "DEMO_REQUEST";
+
+    // ============================================================
+    // ADMIN EMAIL
+    // ============================================================
+
+    const adminSubject = isDemoRequest
+      ? `🎯 New Fortuna Demo Request - ${fullName}`
+      : `🚀 New Website Enquiry - ${fullName}`;
+
+    const adminHeading = isDemoRequest
+      ? "New Fortuna Demo Request"
+      : "New Contact Enquiry";
+
     const mailResult = await sendMail({
-  to: process.env.ADMIN_EMAIL!,
-  subject: `🚀 New Website Enquiry - ${fullName}`,
-  html: `
-    <h2>New Contact Enquiry</h2>
-
-    <table border="1" cellpadding="8" cellspacing="0">
-      <tr>
-        <td><b>Name</b></td>
-        <td>${fullName}</td>
-      </tr>
-
-      <tr>
-        <td><b>Email</b></td>
-        <td>${email}</td>
-      </tr>
-
-      <tr>
-        <td><b>Company</b></td>
-        <td>${company}</td>
-      </tr>
-
-      <tr>
-        <td><b>Phone</b></td>
-        <td>${phoneCode} ${phone}</td>
-      </tr>
-
-      <tr>
-        <td><b>Industry</b></td>
-        <td>${industry}</td>
-      </tr>
-
-      <tr>
-        <td><b>Product</b></td>
-        <td>${product}</td>
-      </tr>
-
-      <tr>
-        <td><b>Country</b></td>
-        <td>${country}</td>
-      </tr>
-
-      <tr>
-        <td><b>Company Size</b></td>
-        <td>${companySize}</td>
-      </tr>
-
-      <tr>
-        <td><b>Message</b></td>
-        <td>${message}</td>
-      </tr>
-    </table>
-  `,
-});
-
-//auto reply to the user
-    // Customer Auto Reply
-
-await sendMail({
-  to: email,
-  subject: "Thank you for contacting Fortuna Global Supply Chain Systems",
-  html: `
-<!DOCTYPE html>
-
-<html>
-
-<head>
-<meta charset="UTF-8">
-</head>
-
-<body style="margin:0;padding:0;background:#f4f7fb;font-family:Arial,sans-serif;">
-
-<table width="100%" cellpadding="0" cellspacing="0" style="padding:40px 0;">
-
-<tr>
-
-<td align="center">
-
-<table width="700" cellpadding="0" cellspacing="0"
-style="
-background:#ffffff;
-border-radius:12px;
-overflow:hidden;
-box-shadow:0 10px 35px rgba(0,0,0,.08);
-">
-
-<!-- Header -->
-
-<tr>
-
-<td
-style="
-background:#C8102E;
-padding:30px;
-text-align:center;
-">
-
-<h1 style="margin:0;color:#ffffff;">
-Fortuna Global Supply Chain Systems
-</h1>
-
-<p style="color:#ffffff;margin-top:8px;">
-Enterprise Supply Chain Software Platform
-</p>
-
-</td>
-
-</tr>
-
-<!-- Body -->
-
-<tr>
-
-<td style="padding:40px;">
-
-<h2 style="color:#111827;">
-Hello ${fullName},
-</h2>
-
-<p style="font-size:16px;color:#555;line-height:28px;">
-
-Thank you for contacting
-<b>Fortuna Global Supply Chain Systems.</b>
-
-</p>
-
-<p style="font-size:16px;color:#555;line-height:28px;">
-
-We have successfully received your enquiry.
-
-Our Supply Chain experts will review your request and get back to you shortly.
-
-</p>
-
-<hr style="margin:35px 0;">
-
-<h3 style="margin-bottom:20px;">
-Your Request Summary
-</h3>
-
-<table
-width="100%"
-cellpadding="10"
-style="border-collapse:collapse;">
-
-<tr>
-<td><b>Company</b></td>
-<td>${company}</td>
-</tr>
-
-<tr>
-<td><b>Interested Product</b></td>
-<td>${product}</td>
-</tr>
-
-<tr>
-<td><b>Industry</b></td>
-<td>${industry}</td>
-</tr>
-
-<tr>
-<td><b>Country</b></td>
-<td>${country}</td>
-</tr>
-
-</table>
-
-<br>
-
-<a
-href="https://fortunaglobalsupplychain.com"
-style="
-display:inline-block;
-padding:15px 35px;
-background:#C8102E;
-color:white;
-text-decoration:none;
-border-radius:8px;
-font-weight:bold;
-">
-
-Visit Our Website
-
-</a>
-
-<hr style="margin:35px 0;">
-
-<p style="color:#666;line-height:28px;">
-
-Regards,
-
-<br><br>
-
-<b>Fortuna Global Supply Chain Systems</b>
-
-<br>
-
-Enterprise Supply Chain Software
-
-<br>
-
-https://fortunaglobalsupplychain.com
-
-</p>
-
-</td>
-
-</tr>
-
-<!-- Footer -->
-
-<tr>
-
-<td
-style="
-background:#0f172a;
-padding:25px;
-text-align:center;
-color:white;
-font-size:13px;
-">
-
-© 2026 Fortuna Global Supply Chain Systems
-
-</td>
-
-</tr>
-
-</table>
-
-</td>
-
-</tr>
-
-</table>
-
-</body>
-
-</html>
-`,
-});
-
-console.log("MAIL RESULT:", mailResult);
+      to: process.env.ADMIN_EMAIL!,
+      subject: adminSubject,
+      html: `
+        <div style="font-family: Arial, sans-serif; color: #1e293b;">
+
+          <h2 style="color: #005F99;">
+            ${adminHeading}
+          </h2>
+
+          <p>
+            <b>Enquiry ID:</b> ${enquiryId}
+          </p>
+
+          <table
+            border="1"
+            cellpadding="8"
+            cellspacing="0"
+            style="
+              border-collapse: collapse;
+              width: 100%;
+              max-width: 700px;
+              font-family: Arial, sans-serif;
+            "
+          >
+
+            <tr>
+              <td><b>Enquiry Type</b></td>
+              <td>${enquiryType}</td>
+            </tr>
+
+            <tr>
+              <td><b>Name</b></td>
+              <td>${fullName}</td>
+            </tr>
+
+            <tr>
+              <td><b>Email</b></td>
+              <td>${email}</td>
+            </tr>
+
+            <tr>
+              <td><b>Company</b></td>
+              <td>${company}</td>
+            </tr>
+
+            <tr>
+              <td><b>Phone</b></td>
+              <td>${phoneCode || ""} ${phone || ""}</td>
+            </tr>
+
+            <tr>
+              <td><b>Industry</b></td>
+              <td>${industry}</td>
+            </tr>
+
+            <tr>
+              <td><b>Product</b></td>
+              <td>${product}</td>
+            </tr>
+
+            <tr>
+              <td><b>Country</b></td>
+              <td>${country}</td>
+            </tr>
+
+            <tr>
+              <td><b>Company Size</b></td>
+              <td>${companySize}</td>
+            </tr>
+
+            <tr>
+              <td><b>Message</b></td>
+              <td>${message}</td>
+            </tr>
+
+          </table>
+
+          <p style="margin-top: 24px; color: #64748b;">
+            Fortuna Global Supply Chain Systems
+          </p>
+
+        </div>
+      `,
+    });
+
+    console.log("ADMIN MAIL RESULT:", mailResult);
+
+    // ============================================================
+    // CUSTOMER AUTO REPLY
+    // ============================================================
+
+    const customerSubject = isDemoRequest
+      ? "Thank you for requesting a Fortuna Demo"
+      : "Thank you for contacting Fortuna Global Supply Chain Systems";
+
+    const customerContent = isDemoRequest
+      ? `
+          <p>
+            Thank you for requesting a demo of
+            <b>Fortuna Global Supply Chain Systems</b>.
+          </p>
+
+          <p>
+            We have successfully received your demo request.
+            Our Supply Chain experts will review your requirements
+            and get back to you shortly to arrange a personalized
+            demonstration.
+          </p>
+        `
+      : `
+          <p>
+            Thank you for contacting
+            <b>Fortuna Global Supply Chain Systems</b>.
+          </p>
+
+          <p>
+            We have successfully received your enquiry.
+            Our Supply Chain experts will review your request
+            and get back to you shortly.
+          </p>
+        `;
+
+    await sendMail({
+      to: email,
+      subject: customerSubject,
+      html: `
+        <div
+          style="
+            font-family: Arial, sans-serif;
+            color: #334155;
+            line-height: 1.7;
+          "
+        >
+
+          <p>
+            Dear ${fullName},
+          </p>
+
+          ${customerContent}
+
+          <p style="margin-top: 28px;">
+            <b>Visit Our Website</b>
+          </p>
+
+          <p>
+            <a
+              href="https://www.fortunaglobalsupplychain.com"
+              style="color: #005F99;"
+            >
+              www.fortunaglobalsupplychain.com
+            </a>
+          </p>
+
+          <p style="margin-top: 28px;">
+            Regards,
+          </p>
+
+          <p>
+            <b>Fortuna Global Supply Chain Systems</b><br />
+            Enterprise Supply Chain Software
+          </p>
+
+          <p style="color: #94a3b8; font-size: 12px;">
+            © 2026 Fortuna Global Supply Chain Systems
+          </p>
+
+        </div>
+      `,
+    });
+
+    console.log("CUSTOMER AUTO REPLY SENT:", email);
+
+    // ============================================================
+    // SUCCESS RESPONSE
+    // ============================================================
 
     return NextResponse.json({
       success: true,
-      enquiryId: result.rows[0].id,
+      enquiryId,
+      enquiryType,
     });
+
   } catch (error: any) {
-    console.error("DB ERROR:", error);
+
+    console.error("=================================");
+    console.error("CONTACT API ERROR");
+    console.error(error);
+    console.error("=================================");
 
     return NextResponse.json(
       {
         success: false,
-        message: error.message,
+        message:
+          error?.message ||
+          "Something went wrong while processing your enquiry.",
       },
-      { status: 500 }
+      {
+        status: 500,
+      }
     );
   }
 }
