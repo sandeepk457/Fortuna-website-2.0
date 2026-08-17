@@ -12,7 +12,7 @@ const products = [
   {
     name: "Fortuna DemandSense",
     description: "AI Demand Forecasting Platform",
-    icon: "/images/products/Fortuna_DMNDS.png",
+    icon: "/images/products/demandsense-logo.png",
   },
   {
     name: "Fortuna Plan Copilot",
