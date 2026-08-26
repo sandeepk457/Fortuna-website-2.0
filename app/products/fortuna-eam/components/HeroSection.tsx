@@ -10,7 +10,25 @@ import {
 
 export default function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-white px-4 py-14 sm:px-6 sm:py-18 lg:px-8 lg:py-22">
+    <section
+      id="eam-hero"
+      className="
+        relative
+        isolate
+        overflow-hidden
+        bg-white
+        px-4
+        pt-[105px]
+        pb-14
+        sm:px-6
+        sm:pt-[115px]
+        sm:pb-18
+        lg:px-8
+        lg:pt-[125px]
+        lg:pb-22
+        scroll-mt-[110px]
+      "
+    >
       {/* =====================================================
           PAGE BACKGROUND
       ====================================================== */}
