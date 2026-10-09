@@ -23,7 +23,7 @@ export default function Footer() {
           {/* Company */}
           <div>
             <Image
-              src="/images/logos/Logo(3).png"
+              src="/images/logos/Fortuna Global Supply Chain Logo.png"
               alt="Fortuna"
               width={220}
               height={60}
