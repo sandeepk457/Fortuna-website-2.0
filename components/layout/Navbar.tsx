@@ -35,11 +35,11 @@ export default function Navbar() {
   const products = [
   {
     title: "Fortuna SIMS",
-    href: "/products/sims",
+    href: "/products/fortuna-sims",
   },
   {
     title: "Fortuna TMS",
-    href: "/products/tms",
+    href: "/products/fortuna-tms",
   },
   {
     title: "DemandSense AI",
@@ -47,7 +47,7 @@ export default function Navbar() {
   },
   {
     title: "Lastmile AI",
-    href: "/products/lastmile-ai",
+    href: "/products/fortuna-lastmile-ai",
   },
   {
     title: "Plan CoPilot",
@@ -59,7 +59,7 @@ export default function Navbar() {
   },
   {
     title: "Enterprise Asset Management",
-    href: "/products/eam",
+    href: "/products/fortuna-eam",
   },
 ];
 
@@ -403,7 +403,7 @@ hover:bg-slate-50
 
   <SheetClose asChild>
     <Link
-      href="/products/tms"
+      href="/products/fortuna-tms"
       className="
         block
         px-10
@@ -439,7 +439,7 @@ hover:bg-slate-50
 
   <SheetClose asChild>
     <Link
-      href="/products/lastmile-ai"
+      href="/products/fortuna-lastmile-ai"
       className="
         block
         px-10
@@ -455,28 +455,10 @@ hover:bg-slate-50
     </Link>
   </SheetClose>
 
-  <SheetClose asChild>
-    <Link
-      href="/products/plan-copilot"
-      className="
-        block
-        px-10
-        py-3
-        text-slate-600
-        transition-all
-        duration-300
-        hover:bg-slate-50
-        hover:text-[#C8102E]
-      "
-    >
-      Plan CoPilot
-    </Link>
-  </SheetClose>
-
 
   <SheetClose asChild>
     <Link
-      href="/products/plan-copilot"
+      href="/products/yardsync"
       className="
         block
         px-10
@@ -512,7 +494,7 @@ hover:bg-slate-50
 
   <SheetClose asChild>
     <Link
-      href="/products/eam"
+      href="/products/fortuna-eam"
       className="
         block
         px-10
