@@ -103,7 +103,7 @@ export default function LaunchPage() {
         </p>
 
         <h2 className="guest-name">
-          Mr. M.D. Raja Ramesh Garu
+          Mr. M.Raja Ramesh Garu
         </h2>
 
         <p className="guest-designation">
